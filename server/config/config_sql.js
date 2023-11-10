@@ -1,10 +1,10 @@
 
-const db_config = {
+const db_config_options = {
 	"development": {
 		"use_env_variable": false,
 		"username": "postgres",
 		"password": "abc",
-		"database": "msu",
+		"database": "mcu",
 		"host": "127.0.0.1",
 		"dialect": "postgres",
 	},
@@ -12,16 +12,16 @@ const db_config = {
 		"use_env_variable": false,
 		"username": "postgres",
 		"password": "abc",
-		"database": "msu",
+		"database": "mcu",
 		"host": "localhost",
 		"dialect": "postgres", 
 	},
 	"production": {
 		"username": "root",
 		"password": null,
-		"database": "database_production",
+		"database": "mcu",
 		"host": "127.0.0.1",
 		"dialect": "mysql"
 	}
 }
-export default db_config
+export default db_config_options
