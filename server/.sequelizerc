@@ -1,0 +1,10 @@
+import path from 'path'
+
+const config = {
+  'config':          path.resolve('config', 'config_sql.js'),
+  'migrations-path': path.resolve('migrations'),
+  'models-path':     path.resolve('src', 'models'),
+  'seeders-path':    path.resolve('seeders'),
+}
+
+export default config
