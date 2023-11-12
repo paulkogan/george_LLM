@@ -13,6 +13,7 @@
   "author": "Paul Kogan",
   "license": "MIT",
   "dependencies": {
+    "babel-register": "^6.26.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",

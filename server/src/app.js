@@ -4,7 +4,7 @@ import bodyParser from "body-parser"
 // import jsonWebToken from 'jsonwebtoken'   
 // import {expressjwt} from 'express-jwt';
 // import cookieParser from "cookie-parser"
-// import router from "./routes/routes_main.js"
+import router from "./routes/routes_main.js"
 
 
 
@@ -33,6 +33,6 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-// app.use(router)
+app.use(router)
 
 export {app}

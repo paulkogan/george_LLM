@@ -25,3 +25,4 @@ const db_config_options = {
 	}
 }
 export default db_config_options
+//module.exports = db_config_options

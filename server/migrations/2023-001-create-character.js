@@ -1,22 +1,26 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
+
+//** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Characters', {
+    await queryInterface.createTable('characters', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        defaultValue: Sequelize.UUIDV4,
+        type: Sequelize.UUID,
       },
       name: {
         type: Sequelize.STRING
       },
       civilian: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: true
       },
       gender: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -29,6 +33,8 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Characters');
+    await queryInterface.dropTable('characters');
   }
 };
+
+//export default migration

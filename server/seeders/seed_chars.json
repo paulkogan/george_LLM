@@ -1,0 +1,37 @@
+[
+{
+    "name": "Captain America", 
+    "civilian": "Steve Rogers",
+    "gender": "male"
+}, 
+{
+    "name": "Captain Marvel", 
+    "civilian": "Carol Danvers",
+    "gender": "female"
+}, 
+{
+    "name": "The Hulk", 
+    "civilian": "Bruce Banner",
+    "gender": "male"
+}, 
+{
+    "name": "Nick Fury", 
+    "civilian": "Nick Fury",
+    "gender": "male"
+}, 
+{
+    "name": "Iron Man", 
+    "civilian": "Tony Stark",
+    "gender": "male"
+}, 
+{
+    "name": "Black Widow", 
+    "civilian": "Natasha Romanoff",
+    "gender": "female"
+}
+
+]
+
+
+
+
