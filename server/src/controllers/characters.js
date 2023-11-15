@@ -1,18 +1,13 @@
 
 import { Sequelize, DataTypes, Model } from 'sequelize';
 import models from "../models/index.js"
-const Character = models.Character
-
-const Op = Sequelize.Op
-
 import {createNewCharacter} from "../domain/character.service.js"
-
-
+const Op = Sequelize.Op
+const Character = models.Character
 
 const createNew = async (req, res) => {
 
 	const createCharacterResponse = await createNewCharacter(req.body) 
-	// console.log(`\n\nCREATE User RESPONSE IS  ${JSON.stringify(createUserResponse)}`)
 	if (createCharacterResponse.status) {
 		res.status(createCharacterResponsestatus).send(createCharacterResponse)
 	} else {

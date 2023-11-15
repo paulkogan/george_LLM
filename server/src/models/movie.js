@@ -32,6 +32,7 @@ const MovieModel = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Movie',
     tableName: "movies",
+    underscored: true
   });
 
   return Movie;

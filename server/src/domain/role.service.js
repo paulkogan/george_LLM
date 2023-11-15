@@ -21,15 +21,15 @@ const findRoleByName = async (name_target) => {
 
 
 const createNewRole = async (RolePayload) => {
-	const new_char = {...RolePayload, id: uuidv4()}
-	console.log(`SERVICE - New  Role is: ${JSON.stringify(new_char)}`)
+	const new_role = {...RolePayload, id: uuidv4()}
+	console.log(`SERVICE - New  Role is: ${JSON.stringify(new_role)}`)
     
 	try {
-		const createCharResponse = await Role.create(new_char)
+		const createRoleResponse = await Role.create(new_role)
 		const responseObject = {
 			status: 201,
-			message: `Success - New Role ${userPayload.name} Created `,
-			data: createCharResponse
+			message: `Success - New Role Created `,
+			data: createRoleResponse
 		}
 		return responseObject  
 
@@ -39,6 +39,7 @@ const createNewRole = async (RolePayload) => {
 			message: error.message,
 			data: null
 		}
+		console.log(`ERROR creating role ${error}`)
 		return responseObject  
 
 	}

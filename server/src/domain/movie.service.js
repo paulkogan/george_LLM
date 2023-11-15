@@ -1,14 +1,17 @@
 
+import { Sequelize, DataTypes, Model } from 'sequelize';
+const Op = Sequelize.Op
 import models from "../models/index.js"
 const Movie = models.Movie
+
 import { v4 as uuidv4 } from "uuid"
 
 
 
-const findMovieByName = async (name_target) => {
+const findMovieByName = async (target_title) => {
 
 	const results = await Movie.findOne({
-		where: {title: name_target},
+		where: {title: target_title},
 	})
 
 	if (!results) {
@@ -18,6 +21,27 @@ const findMovieByName = async (name_target) => {
 	return results
 
 } 
+
+const findMovieByNameAndYear = async (target_title, target_year) => {
+
+	const results = await Movie.findOne({
+		where: {
+			[Op.and]: [
+			{ title: { [Op.iLike]: `%${target_title}%` } },
+			{release_year: target_year}
+			]
+		}	
+	})
+
+
+	if (!results) {
+		console.log(`Not found movie: ${target_title} ${target_year}`)
+	}
+  
+	return results
+
+} 
+
 
 
 const createNewMovie = async (MoviePayload) => {
@@ -53,7 +77,7 @@ const clearMovieTable = async () => {
 }
 
 
-export {createNewMovie, findMovieByName, clearMovieTable}
+export {createNewMovie, findMovieByName, clearMovieTable, findMovieByNameAndYear}
 
 
 

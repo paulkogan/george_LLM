@@ -12,7 +12,6 @@ import {createNewActor} from "../domain/actor.service.js"
 const createNew = async (req, res) => {
 
 	const createActorResponse = await createNewActor(req.body) 
-	// console.log(`\n\nCREATE Actor RESPONSE IS  ${JSON.stringify(createUserResponse)}`)
 	if (createActorResponse.status) {
 		res.status(createActorResponse.status).send(createActorResponse)
 	} else {

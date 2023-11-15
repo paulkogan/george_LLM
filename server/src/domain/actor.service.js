@@ -1,18 +1,25 @@
 
+import { Sequelize, DataTypes, Model } from 'sequelize';
+const Op = Sequelize.Op
 import models from "../models/index.js"
 const Actor = models.Actor
 import { v4 as uuidv4 } from "uuid"
 
 
 
-const findActorByName = async (name_target) => {
+const findActorByNames = async (first_target, last_target) => {
 
 	const results = await Actor.findOne({
-		where: {first_name: name_target},
+			where: {
+				[Op.and]: [
+				{ first_name: { [Op.iLike]: `%${first_target}%` } },
+				{ last_name: { [Op.iLike]: `%${last_target}%` } },
+				]
+			}	
 	})
 
 	if (!results) {
-		console.log("No Actor found")
+		console.log(`No Actor found ${first_target}.${last_target}`)
 	}
   
 	return results
@@ -55,7 +62,7 @@ const clearActorTable = async () => {
 }
 
 
-export {createNewActor, findActorByName, clearActorTable}
+export {createNewActor, findActorByNames, clearActorTable}
 
 
 

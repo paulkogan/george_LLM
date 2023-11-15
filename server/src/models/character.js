@@ -40,6 +40,7 @@ const CharacterModel = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Character',
     tableName: "characters",
+    underscored: true
   });
 
   return Character;
