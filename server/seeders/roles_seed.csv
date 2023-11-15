@@ -1,0 +1,69 @@
+first_name,last_name,title,release_year,name
+Samuel,Jackson,Iron Man,2008,Nick Fury
+Samuel,Jackson,Iron Man 2,2010,Nick Fury
+Samuel,Jackson,Thor,2011,Nick Fury
+Samuel,Jackson,Captain America: The First Avenger,2011,Nick Fury
+Samuel,Jackson,The Avengers,2012,Nick Fury
+Samuel,Jackson,Captain America: The Winter Soldier,2014,Nick Fury
+Samuel,Jackson,Avengers: Age of Ultron,2015,Nick Fury
+Samuel,Jackson,Avengers: Infinity War,2018,Nick Fury
+Samuel,Jackson,Captain Marvel,2019,Nick Fury
+Samuel,Jackson,Avengers: Endgame,2019,Nick Fury
+Samuel,Jackson,Spider-Man: Far From Home,2019,Nick Fury
+Samuel,Jackson,The Marvels,2023,Nick Fury
+Scarlett ,Johansson,Iron Man 2,2010,Black Widow
+Scarlett ,Johansson,The Avengers,2012,Black Widow
+Scarlett ,Johansson,Captain America: The Winter Soldier,2013,Black Widow
+Scarlett ,Johansson,Avengers: Age of Ultron,2015,Black Widow
+Scarlett ,Johansson,Captain America: Civil War,2016,Black Widow
+Scarlett ,Johansson,Avengers: Infinity War,2018,Black Widow
+Scarlett ,Johansson,Avengers: Endgame,2019,Black Widow
+Scarlett ,Johansson,Black Widow,2021,Black Widow
+Robert,Downey Jr.,Iron Man,2008,Iron Man
+Robert,Downey Jr.,Iron Man 2,2010,Iron Man
+Robert,Downey Jr.,The Avengers,2012,Iron Man
+Robert,Downey Jr.,Iron Man 3,2013,Iron Man
+Robert,Downey Jr.,Avengers: Age of Ultron,2015,Iron Man
+Robert,Downey Jr.,Captain America: Civil War,2016,Iron Man
+Robert,Downey Jr.,Spider-Man: Homecoming,2017,Iron Man
+Robert,Downey Jr.,Avengers: Infinity War,2018,Iron Man
+Robert,Downey Jr.,Avengers: Endgame,2019,Iron Man
+Chris,Hemsworth,Thor,2011,Thor
+Chris,Hemsworth,The Avengers,2012,Thor
+Chris,Hemsworth,Thor: The Dark World,2013,Thor
+Chris,Hemsworth,Avengers: Age of Ultron,2015,Thor
+Chris,Hemsworth,Thor: Ragnarok,2017,Thor
+Chris,Hemsworth,Avengers: Infinity War,2018,Thor
+Chris,Hemsworth,Avengers: Endgame,2019,Thor
+Chris,Hemsworth,Thor: Love and Thunder,2022,Thor
+Mark,Ruffalo,The Avengers,2012,The Hulk
+Mark,Ruffalo,Iron Man 3,2013,The Hulk
+Mark,Ruffalo,Avengers: Age of Ultron,2015,The Hulk
+Mark,Ruffalo,Thor: Ragnarok,2017,The Hulk
+Mark,Ruffalo,Avengers: Infinity War,2018,The Hulk
+Mark,Ruffalo,Avengers: Endgame,2019,The Hulk
+Mark,Ruffalo,Shang-Chi and the Legend of the Ten Rings,2021,The Hulk
+Chris,Evans,Captain America: The First Avenger,2011,Captain America
+Chris,Evans,The Avengers,2012,Captain America
+Chris,Evans,Captain America: The Winter Soldier,2014,Captain America
+Chris,Evans,Avengers: Age of Ultron,2015,Captain America
+Chris,Evans,Captain America: Civil War,2016,Captain America
+Chris,Evans,Avengers: Infinity War,2018,Captain America
+Chris,Evans,Avengers: Endgame,2019,Captain America
+Tom,Holland,Captain America: Civil War,2016,Spider Man
+Tom,Holland,Spider-Man: Homecoming,2017,Spider Man
+Tom,Holland,Avengers: Infinity War,2018,Spider Man
+Tom,Holland,Avengers: Endgame,2019,Spider Man
+Tom,Holland,Spider-Man: Far From Home,2019,Spider Man
+Tom,Holland,Spider-Man: No Way Home,2021,Spider Man
+Benedict,Cumberbatch,Doctor Strange,2016,Doctor Strange
+Benedict,Cumberbatch,Thor: Ragnarok,2017,Doctor Strange
+Benedict,Cumberbatch,Avengers: Infinity War,2018,Doctor Strange
+Benedict,Cumberbatch,Avengers: Endgame,2019,Doctor Strange
+Benedict,Cumberbatch,Spider-Man: No Way Home,2021,Doctor Strange
+Benedict,Cumberbatch,Doctor Strange in the Multiverse of Madness,2022,Doctor Strange
+Jeremy,Renner,Thor,2011,Hawkeye
+Jeremy,Renner,The Avengers,2012,Hawkeye
+Jeremy,Renner,Avengers: Age of Ultron,2015,Hawkeye
+Jeremy,Renner,Captain America: Civil War,2016,Hawkeye
+Jeremy,Renner,Avengers: Endgame,2019,Hawkeye
