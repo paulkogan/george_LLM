@@ -5,7 +5,7 @@ const Character = models.Character
 
 const Op = Sequelize.Op
 
-import createNewCharacter from "../domain/character.service.js"
+import {createNewCharacter} from "../domain/character.service.js"
 
 
 

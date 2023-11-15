@@ -1,0 +1,78 @@
+[
+{
+    "name": "Captain America", 
+    "civilian": "Steve Rogers",
+    "gender": "male", 
+    "character_type": "enhanced human",
+    "powers": "super strength, shield"
+}, 
+{
+    "name": "Captain Marvel", 
+    "civilian": "Carol Danvers",
+    "gender": "female", 
+    "character_type": "mutant human",
+    "powers": "flight, energy blasts from hands, space travel"
+}, 
+{
+    "name": "The Hulk", 
+    "civilian": "Bruce Banner",
+    "gender": "male",
+    "character_type": "mutant human",
+    "powers": "super strength"
+}, 
+{
+    "name": "Nick Fury", 
+    "civilian": "Nick Fury",
+    "gender": "male",
+    "character_type": "human",
+    "powers": "none"
+}, 
+{
+    "name": "Iron Man", 
+    "civilian": "Tony Stark",
+    "gender": "male",
+    "character_type": "enhanced human",
+    "powers": "flight, strength, weapons technology"
+}, 
+{
+    "name": "Black Widow", 
+    "civilian": "Natasha Romanoff",
+    "gender": "female",
+    "character_type": "enhanced human",
+    "powers": "super strength and stamina"
+}, 
+{
+    "name": "Hawkeye", 
+    "civilian": "Clint Barton",
+    "gender": "male",
+    "character_type": "human",
+    "powers": "none"
+}, 
+{
+    "name": "Thor", 
+    "civilian": null,
+    "gender": "male",
+    "character_type": "Asgardian god",
+    "powers": "super strength, durability, weather control, lightning blasts, hammer"
+}, 
+{
+    "name": "Doctor Strange", 
+    "civilian": "Dr. Stephen Strange",
+    "gender": "male",
+    "character_type": "human",
+    "powers": "magic"
+}, 
+{
+    "name": "Spider Man", 
+    "civilian": "Peter Parker",
+    "gender": "male",
+    "character_type": "mutant human",
+    "powers": "super strength, dexterity, wallcrawling, webbing"
+}
+
+
+]
+
+
+
+
