@@ -34,27 +34,6 @@ const MovieModel = (sequelize, DataTypes) => {
     tableName: "movies",
   });
 
-  // take these methods out to a domain layer
-	Movie.findByTitle = async (title_target) => {
-
-		const results = await Movie.findOne({
-			where: {name: title_target},
-		})
-
-		if (!results) {
-			console.log("No Movie found")
-		}
-      
-		return results
-
-	} 
-
-	Movie.addNew = async (new_movie) => {
-
-		return await Movie.create(new_movie)
-		//return message
-	}
-
   return Movie;
 };
 

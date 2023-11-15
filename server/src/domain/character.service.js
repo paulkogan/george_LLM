@@ -4,13 +4,28 @@ const Character = models.Character
 import { v4 as uuidv4 } from "uuid"
 
 
+
+const findCharacterByName = async (name_target) => {
+
+	const results = await Character.findOne({
+		where: {name: name_target},
+	})
+
+	if (!results) {
+		console.log("No character found")
+	}
+  
+	return results
+
+} 
+
+
 const createNewCharacter = async (characterPayload) => {
 	const new_char = {...characterPayload, id: uuidv4()}
 	console.log(`SERVICE - New  CHAR is: ${JSON.stringify(new_char)}`)
     
 	try {
-		const createCharResponse = await Character.createNew(new_char)
-
+		const createCharResponse = await Character.create(new_char)
 		const responseObject = {
 			status: 201,
 			message: `Success - New Character ${userPayload.name} Created `,
@@ -30,7 +45,15 @@ const createNewCharacter = async (characterPayload) => {
 
 }
 
-export default createNewCharacter 
+const clearCharacterTable = async () => {
+	Character.destroy({
+		where: {},
+		truncate: true
+	})
+}
+
+
+export {createNewCharacter, findCharacterByName, clearCharacterTable}
 
 
 

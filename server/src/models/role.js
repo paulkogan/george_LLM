@@ -31,12 +31,6 @@ const RoleModel = (sequelize, DataTypes) => {
   });
 
 
-	Role.addNew = async (new_role) => {
-
-		return await Role.create(new_role)
-		//return message
-	}
-
   return Role;
 };
 

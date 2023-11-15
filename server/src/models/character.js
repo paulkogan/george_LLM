@@ -42,27 +42,6 @@ const CharacterModel = (sequelize, DataTypes) => {
     tableName: "characters",
   });
 
-  // take these methods out to a domain layer
-	Character.findByName = async (name_target) => {
-
-		const results = await Character.findOne({
-			where: {name: name_target},
-		})
-
-		if (!results) {
-			console.log("No character found")
-		}
-      
-		return results
-
-	} 
-
-	Character.addNew = async (new_character) => {
-
-		return await Character.create(new_character)
-		//return message
-	}
-
   return Character;
 };
 

@@ -15,5 +15,5 @@ const db_config = db_config_options["development"]
 
 // load seeds
 // import load_chars from "./services/loader.js"
-// import chars_list from '../seeders/seed_chars.json' assert { type: "json" }
+// import chars_list from '../seeders/character_seed.json' assert { type: "json" }
 // load_chars(chars_list)

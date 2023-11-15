@@ -30,27 +30,6 @@ const ActorModel = (sequelize, DataTypes) => {
     tableName: "actors",
   });
 
-  // take these methods out to a domain layer
-	Actor.findByName = async (name_target) => {
-
-		const results = await Actor.findOne({
-			where: {name: name_target},
-		})
-
-		if (!results) {
-			console.log("No Actor found")
-		}
-      
-		return results
-
-	} 
-
-	Actor.addNew = async (new_actor) => {
-
-		return await Actor.create(new_actor)
-		//return message
-	}
-
   return Actor;
 };
 
