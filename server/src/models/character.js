@@ -24,6 +24,18 @@ const CharacterModel = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.TEXT,
     },
+    image_url:  {
+      allowNull: true,
+      type: DataTypes.STRING
+    },
+    powers: {
+      allowNull: true,
+      type: DataTypes.TEXT,
+    },
+    character_type:  {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
   }, {
     sequelize,
     modelName: 'Character',
