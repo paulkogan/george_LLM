@@ -20,17 +20,18 @@ const findActorByName = async (name_target) => {
 } 
 
 
-const createNewActor = async (ActorPayload) => {
-	const new_char = {...ActorPayload, id: uuidv4()}
-	console.log(`SERVICE - New  Actor is: ${JSON.stringify(new_char)}`)
+const createNewActor = async (actorPayload) => {
+	const new_actor = {...actorPayload, id: uuidv4()}
+	//console.log(`SERVICE - New  Actor is: ${JSON.stringify(new_actor)}`)
     
 	try {
-		const createCharResponse = await Actor.create(new_char)
+		const createActorResponse = await Actor.create(new_actor)
 		const responseObject = {
 			status: 201,
-			message: `Success - New Actor ${userPayload.name} Created `,
-			data: createCharResponse
+			message: `Success - New Actor ${new_actor.last_name} Created `,
+			data: createActorResponse 
 		}
+		console.log(`SUCCESS ${new_actor.last_name}`)
 		return responseObject  
 
 	} catch (error) {
@@ -39,6 +40,7 @@ const createNewActor = async (ActorPayload) => {
 			message: error.message,
 			data: null
 		}
+		console.log(`ERROR ${error.message}`)
 		return responseObject  
 
 	}

@@ -4,7 +4,8 @@ import fs from "fs"
 import { parse } from "csv-parse";
 import {createNewCharacter, clearCharacterTable} from "../domain/character.service.js"
 import {createNewMovie, clearMovieTable} from "../domain/movie.service.js"
-import chars_list from '../../seeders/character_seed.json' assert { type: "json" }
+import {createNewActor, clearActorTable} from "../domain/actor.service.js"
+import chars_list from '../../seeders/character_seed_30.json' assert { type: "json" }
 
 const load_chars = async () => {
     clearCharacterTable()
@@ -16,7 +17,7 @@ const load_chars = async () => {
 
 const load_movies = async () => {  
     clearMovieTable()
-    fs.createReadStream("./seeders/movies_30.csv")
+    fs.createReadStream("./seeders/movies_seed_30.csv")
       .pipe(parse({ delimiter: ",", from_line: 2 }))
       .on("data", function (row) {
         //console.log(row);
@@ -36,10 +37,31 @@ const load_movies = async () => {
       .on("error", function (error) {
         console.log(error.message);
       });
-
-
 }
 
 
+const load_actors = async () => {  
+    clearActorTable()
+    fs.createReadStream("./seeders/actors_seed_30.csv")
+      .pipe(parse({ delimiter: ",", from_line: 2 }))
+      .on("data", function (row) {
+        //console.log(row);
+        let actor_payload = {
+            "first_name": row[0],
+            "last_name": row[1],
+            "image_url": row[2],
+        }
 
-export {load_chars, load_movies}
+        const createActorResponse = createNewActor(actor_payload)
+        //console.log(`Response to ${actor_payload.last_name}:  ${createActorResponse}`);
+      })
+      .on("end", function () {
+        console.log("finished");
+      })
+      .on("error", function (error) {
+        console.log(error.message);
+      });
+}
+
+
+export {load_chars, load_movies, load_actors}

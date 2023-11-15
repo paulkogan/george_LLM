@@ -5,7 +5,7 @@ const Movie = models.Movie
 
 const Op = Sequelize.Op
 
-import createNewMovie from "../domain/movie.service.js"
+import {createNewMovie} from "../domain/movie.service.js"
 
 
 
@@ -30,7 +30,7 @@ const listMovies = async (req, res) => {
 	Movie.findAll({ 
 		where: condition,
 		order: [
-			["title", "ASC"],
+			["release_year", "ASC"],
 		],
 	})
 		.then(data => {
