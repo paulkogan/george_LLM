@@ -33,6 +33,27 @@ const listActors = async (req, res) => {
 
 	Actor.findAll({ 
 		where: condition,
+		include: [
+			{
+				model: models.Role,
+				as: "character-roles",
+				required: false, 
+				attributes: ["id"],
+				include: [
+					{
+						model: models.Movie,
+						attributes: ["title","global_box_office","release_year","synopsis","id"],
+						as: "role-movie"
+					},
+					{
+						model: models.Character,
+						attributes: ["name", "civilian", "powers", "character_type", "id"],
+						as: "role-character"
+					},
+	
+				]
+			}
+		],
 		order: [
 			["last_name", "ASC"],
 		],

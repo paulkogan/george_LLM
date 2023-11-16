@@ -72,18 +72,17 @@ models.Role.belongsTo(models.Character,
 		as: "role-character"
 	})
 
-	models.Movie.belongsToMany(models.Actor, 
-		{ 
-			through: 'Role', 
-			as:"movie-actors",
-			foreignKey : 'actor_id',
-			//sourceKey: 'actor_id' 
-		});
+// THROUGH relationships ============================	
+models.Movie.belongsToMany(models.Actor, 
+	{ 
+		through: 'Role', 
+		as:"movie-actors",
+	});
 
-	models.Actor.belongsToMany(models.Movie, { through: 'Role', as:"actor-movies" });
-
-	models.Movie.belongsToMany(models.Character, { through: 'Role' });
-	models.Character.belongsToMany(models.Movie, { through: 'Role' });
+	
+models.Actor.belongsToMany(models.Movie, { through: 'Role', as:"actor-movies" });
+models.Movie.belongsToMany(models.Character, { through: 'Role' });
+models.Character.belongsToMany(models.Movie, { through: 'Role' });
 
 
 

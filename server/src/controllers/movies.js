@@ -24,29 +24,29 @@ const createNew = async (req, res) => {
 
 const listMovies = async (req, res) => {
 	const target_title = req.query.title
-	const condition = target_title ? { title: { [Op.like]: `%${target_title}%` } } : null
+	const condition = target_title ? { title: { [Op.iLike]: `%${target_title}%` } } : null
 
 	Movie.findAll({ 
 		include: [
-		// //{
-		// // 	model: models.Actor,
-		// // 	attributes: ["id","first_name", "last_name"],
-		// // 	as: "movie-actors"
-		// // },
+		// {
+		// 	model: models.Actor,
+		// 	attributes: ["id","first_name", "last_name"],
+		// 	as: "movie-actors"
+		// },
 		{
 			model: models.Role,
 			as: "movie-roles",
 			required: false, 
-			attributes: ["movie_id"],
+			attributes: ["id"],
 			include: [
 				{
 					model: models.Character,
-					attributes: ["name", "civilian", "powers", "id"],
+					attributes: ["name", "civilian", "powers", "character_type", "id"],
 					as: "role-character"
 				},
 				{
 					model: models.Actor,
-					attributes: ["first_name", "last_name", "id"],
+					attributes: ["first_name", "last_name", "image_url", "id"],
 					as: "role-actor"
 				},
 

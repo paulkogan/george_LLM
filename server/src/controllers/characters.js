@@ -19,11 +19,32 @@ const createNew = async (req, res) => {
 
 
 const listCharacters = async (req, res) => {
-	const name = req.query.name
-	const condition = name ? { name: { [Op.like]: `%${name}%` } } : null
+	const target_name = req.query.name
+	const condition = target_name ? { name: { [Op.iLike]: `%${target_name}%` } } : null
 
 	Character.findAll({ 
 		where: condition,
+		include: [
+			{
+				model: models.Role,
+				as: "character-roles",
+				required: false, 
+				attributes: ["id"],
+				include: [
+					{
+						model: models.Movie,
+						attributes: ["title","global_box_office","release_year","synopsis","id"],
+						as: "role-movie"
+					},
+					{
+						model: models.Actor,
+						attributes: ["first_name", "last_name", "image_url", "id"],
+						as: "role-actor"
+					},
+	
+				]
+			}
+		],
 		order: [
 			["name", "ASC"],
 		],
