@@ -28,6 +28,7 @@ const RoleModel = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Role',
     tableName: "roles",
+    underscored: true
   });
 
 

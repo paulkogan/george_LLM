@@ -1,18 +1,13 @@
 
 import { Sequelize, DataTypes, Model } from 'sequelize';
 import models from "../models/index.js"
-const Character = models.Character
-
-const Op = Sequelize.Op
-
 import {createNewCharacter} from "../domain/character.service.js"
-
-
+const Op = Sequelize.Op
+const Character = models.Character
 
 const createNew = async (req, res) => {
 
 	const createCharacterResponse = await createNewCharacter(req.body) 
-	// console.log(`\n\nCREATE User RESPONSE IS  ${JSON.stringify(createUserResponse)}`)
 	if (createCharacterResponse.status) {
 		res.status(createCharacterResponsestatus).send(createCharacterResponse)
 	} else {
@@ -24,11 +19,32 @@ const createNew = async (req, res) => {
 
 
 const listCharacters = async (req, res) => {
-	const name = req.query.name
-	const condition = name ? { name: { [Op.like]: `%${name}%` } } : null
+	const target_name = req.query.name
+	const condition = target_name ? { name: { [Op.iLike]: `%${target_name}%` } } : null
 
 	Character.findAll({ 
 		where: condition,
+		include: [
+			{
+				model: models.Role,
+				as: "character-roles",
+				required: false, 
+				attributes: ["id"],
+				include: [
+					{
+						model: models.Movie,
+						attributes: ["title","global_box_office","release_year","synopsis","id"],
+						as: "role-movie"
+					},
+					{
+						model: models.Actor,
+						attributes: ["first_name", "last_name", "image_url", "id"],
+						as: "role-actor"
+					},
+	
+				]
+			}
+		],
 		order: [
 			["name", "ASC"],
 		],

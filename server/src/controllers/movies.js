@@ -12,7 +12,6 @@ import {createNewMovie} from "../domain/movie.service.js"
 const createNew = async (req, res) => {
 
 	const createMovieResponse = await createNewMovie(req.body) 
-	// console.log(`\n\nCREATE Movie RESPONSE IS  ${JSON.stringify(createUserResponse)}`)
 	if (createMovieResponse.status) {
 		res.status(createMovieResponse.status).send(createMovieResponse)
 	} else {
@@ -25,9 +24,35 @@ const createNew = async (req, res) => {
 
 const listMovies = async (req, res) => {
 	const target_title = req.query.title
-	const condition = target_title ? { title: { [Op.like]: `%${target_title}%` } } : null
+	const condition = target_title ? { title: { [Op.iLike]: `%${target_title}%` } } : null
 
 	Movie.findAll({ 
+		include: [
+		// {
+		// 	model: models.Actor,
+		// 	attributes: ["id","first_name", "last_name"],
+		// 	as: "movie-actors"
+		// },
+		{
+			model: models.Role,
+			as: "movie-roles",
+			required: false, 
+			attributes: ["id"],
+			include: [
+				{
+					model: models.Character,
+					attributes: ["name", "civilian", "powers", "character_type", "id"],
+					as: "role-character"
+				},
+				{
+					model: models.Actor,
+					attributes: ["first_name", "last_name", "image_url", "id"],
+					as: "role-actor"
+				},
+
+			]
+		}
+		 ],
 		where: condition,
 		order: [
 			["release_year", "ASC"],
@@ -43,8 +68,8 @@ const listMovies = async (req, res) => {
 		.catch(err => {
 			res.status(500).send({
 				"data": null,
-				"errors": `Did not find users with ${target_title}`, 
-				"message": `ERROR: for  List Users - ${err.message} `
+				"errors": `Did not find Movies with ${target_title}`, 
+				"message": `ERROR: for  List Movies - ${err.message} `
 			})
 		})
 }

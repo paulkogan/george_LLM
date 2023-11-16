@@ -28,6 +28,7 @@ const ActorModel = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Actor',
     tableName: "actors",
+    underscored: true
   });
 
   return Actor;

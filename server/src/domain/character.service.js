@@ -1,4 +1,5 @@
-
+import { Sequelize, DataTypes, Model } from 'sequelize';
+const Op = Sequelize.Op
 import models from "../models/index.js"
 const Character = models.Character
 import { v4 as uuidv4 } from "uuid"
@@ -8,15 +9,13 @@ import { v4 as uuidv4 } from "uuid"
 const findCharacterByName = async (name_target) => {
 
 	const results = await Character.findOne({
-		where: {name: name_target},
+		where: { name: { [Op.iLike]: `%${name_target}%` } },
 	})
-
+	
 	if (!results) {
-		console.log("No character found")
+		console.log(`No character found ${name_target}`)
 	}
-  
 	return results
-
 } 
 
 
