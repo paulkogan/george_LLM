@@ -1,6 +1,6 @@
 import { Sequelize, DataTypes, Model } from 'sequelize';
 const Op = Sequelize.Op
-import models from "../models/index.js"
+import {models} from "../models/index.js"
 const Character = models.Character
 import { v4 as uuidv4 } from "uuid"
 
@@ -21,7 +21,7 @@ const findCharacterByName = async (name_target) => {
 
 const createNewCharacter = async (characterPayload) => {
 	const new_char = {...characterPayload, id: uuidv4()}
-	console.log(`SERVICE - New  CHAR is: ${JSON.stringify(new_char)}`)
+	// console.log(`SERVICE - New  CHAR is: ${JSON.stringify(new_char)}`)
     
 	try {
 		const createCharResponse = await Character.create(new_char)

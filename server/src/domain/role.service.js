@@ -1,5 +1,5 @@
 
-import models from "../models/index.js"
+import {models} from "../models/index.js"
 const Role = models.Role
 import { v4 as uuidv4 } from "uuid"
 
@@ -22,7 +22,7 @@ const findRoleByName = async (name_target) => {
 
 const createNewRole = async (RolePayload) => {
 	const new_role = {...RolePayload, id: uuidv4()}
-	console.log(`SERVICE - New  Role is: ${JSON.stringify(new_role)}`)
+	// console.log(`SERVICE - New  Role is: ${JSON.stringify(new_role)}`)
     
 	try {
 		const createRoleResponse = await Role.create(new_role)

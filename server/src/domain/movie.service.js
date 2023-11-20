@@ -1,7 +1,7 @@
 
 import { Sequelize, DataTypes, Model } from 'sequelize';
 const Op = Sequelize.Op
-import models from "../models/index.js"
+import {models} from "../models/index.js"
 const Movie = models.Movie
 
 import { v4 as uuidv4 } from "uuid"
@@ -46,7 +46,7 @@ const findMovieByNameAndYear = async (target_title, target_year) => {
 
 const createNewMovie = async (MoviePayload) => {
 	const new_char = {...MoviePayload, id: uuidv4()}
-	console.log(`SERVICE - New  MOVIE is: ${JSON.stringify(new_char)}`)
+	// console.log(`SERVICE - New  MOVIE is: ${JSON.stringify(new_char)}`)
     
 	try {
 		const createCharResponse = await Movie.create(new_char)

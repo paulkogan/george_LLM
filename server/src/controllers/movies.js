@@ -1,6 +1,6 @@
 
 import { Sequelize, DataTypes, Model } from 'sequelize';
-import models from "../models/index.js"
+import {models} from "../models/index.js"
 const Movie = models.Movie
 
 const Op = Sequelize.Op
