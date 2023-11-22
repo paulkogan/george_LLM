@@ -96,9 +96,9 @@ describe("Testing Loader and GET from endpoints", () => {
 	it("should return included ROLES info", async () => {
 		const response = await request(app).get("/movies")
 		const roles = response.body.data[0]["movie-roles"]
-		console.log("Roles for Iron Man 2008 ============\n",JSON.stringify(roles, null,4))
+		// console.log("Roles for Iron Man 2008 ============\n",JSON.stringify(roles, null,4))
 		expect(roles.length).toBe(2)
-		expect(roles[1]["role-character"]["civilian"]).toBe("Tony Stark")
+		expect(roles[0]["role-character"]["civilian"]).toBe("Tony Stark")
 	})
 
 
