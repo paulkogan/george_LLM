@@ -12,7 +12,7 @@ const db_config_options = {
 		"use_env_variable": false,
 		"username": "postgres",
 		"password": "abc",
-		"database": "mcu_test",
+		"database": "mcu_test_2",
 		"host": "localhost",
 		"dialect": "postgres", 
 	},

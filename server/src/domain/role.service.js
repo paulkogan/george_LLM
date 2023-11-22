@@ -31,6 +31,7 @@ const createNewRole = async (RolePayload) => {
 			message: `Success - New Role Created `,
 			data: createRoleResponse
 		}
+		// console.log(`SUCCESS creating role for ${JSON.stringify(new_role, null,4)}  `)
 		return responseObject  
 
 	} catch (error) {
@@ -39,7 +40,7 @@ const createNewRole = async (RolePayload) => {
 			message: error.message,
 			data: null
 		}
-		console.log(`ERROR creating role ${error}`)
+		// console.log(`ERROR creating role for ${JSON.stringify(new_role, null,4)} ${error} `)
 		return responseObject  
 
 	}

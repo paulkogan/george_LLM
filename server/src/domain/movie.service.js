@@ -70,10 +70,11 @@ const createNewMovie = async (MoviePayload) => {
 }
 
 const clearMovieTable = async () => {
-	Movie.destroy({
-		where: {},
-		truncate: true
-	})
+	// Movie.destroy({
+	// 	where: {},
+	// 	truncate: true
+	// })
+	await Movie.truncate();
 }
 
 

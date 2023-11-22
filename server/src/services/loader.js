@@ -98,8 +98,9 @@ const load_roles = async () => {
             "actor_id": role_actor.id,
             "character_id": role_chracter.id,
             "movie_id": role_movie.id,
+            "role_record": [actor_first + " " + actor_last, movie_title, character_name]
           }
-          const createRoleResponse = await createNewRole(role_payload)
+          const createRoleResponse = await createNewRole(role_payload, )
           return 
       } else {
          let miss_tags = [movie_title, actor_first+actor_last, character_name] 
@@ -111,8 +112,8 @@ const load_roles = async () => {
                 }   
          })
          match_mesage += "in "+row
-         console.log(match_mesage)
-         return
+         //console.log(match_mesage)
+         return match_mesage
       }
     })
     .on("end", function () {

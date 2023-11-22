@@ -10,19 +10,22 @@ const RoleModel = (sequelize, DataTypes) => {
       autoIncrement: false,
       primaryKey: true,
       type: DataTypes.UUID,
-      unique: true,
+
     },
     character_id: {
       allowNull: false,
       type: DataTypes.UUID,
+
     },
     movie_id: {
       allowNull: false,
       type: DataTypes.UUID,
+
     },
     actor_id: {
       allowNull: false,
       type: DataTypes.UUID,
+
     },
   }, {
     sequelize,

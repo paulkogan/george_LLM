@@ -6,7 +6,7 @@
   "main": "./src/server.js",
   "scripts": {
     "start": "NODE_ENV=development nodemon /src/server.js",
-    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles --forceExit --no-cache",
+    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles",
     "lint": "npx eslint '**/*.js' --fix"
   },
   "author": "Paul Kogan",

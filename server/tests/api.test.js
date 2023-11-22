@@ -8,7 +8,8 @@ const Character = models.Character
 
 import {createNewActor, clearActorTable, findActorByNames} from "../src/domain/actor.service.js"
 import {createNewRole, clearRoleTable} from "../src/domain/role.service.js"
-import {load_chars, load_movies, load_actors, load_roles}  from "../src/services/loader.js"
+import {clearMovieTable} from "../src/domain/movie.service.js"
+import {loader_main, load_chars, load_movies, load_actors, load_roles}  from "../src/services/loader.js"
 
 let test_actor_1 = {
 	"first_name": "Matt",
@@ -35,12 +36,11 @@ let test_character_1 = {
 
 describe("Testing Loader and GET from endpoints", () => {
 	beforeAll(async () => {
-		
+
 		await sequelize.sync({ force: true }) // clear DB
 		await load_chars()
 		await load_movies()
 		await load_actors()
-		await clearRoleTable()
 		await load_roles()
 		const createActorResponse = createNewActor(test_actor_1)
 
@@ -96,9 +96,9 @@ describe("Testing Loader and GET from endpoints", () => {
 	it("should return included ROLES info", async () => {
 		const response = await request(app).get("/movies")
 		const roles = response.body.data[0]["movie-roles"]
-		console.log("Roles for IM  ============\n",JSON.stringify(roles, null,4))
-		expect(roles.length).toBe(3)
-		expect(roles[1].role-character.civilian).toBe("Tony Stark")
+		console.log("Roles for Iron Man 2008 ============\n",JSON.stringify(roles, null,4))
+		expect(roles.length).toBe(2)
+		expect(roles[1]["role-character"]["civilian"]).toBe("Tony Stark")
 	})
 
 

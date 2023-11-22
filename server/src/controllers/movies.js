@@ -50,7 +50,10 @@ const listMovies = async (req, res) => {
 					as: "role-actor"
 				},
 
-			]
+			], 
+			order: [
+				[{ model: models.Actor, as: 'role-actor' }, 'last_name', 'ASC'],
+			  ],
 		}
 		 ],
 		where: condition,
