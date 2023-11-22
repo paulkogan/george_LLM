@@ -8,8 +8,20 @@ import {createNewActor, clearActorTable, findActorByNames} from "../domain/actor
 import {clearRoleTable, createNewRole} from "../domain/role.service.js"
 import chars_list from '../../seeders/character_seed_30.json' assert { type: "json" }
 
+const loader_main = async () => {
+  await clearCharacterTable()  
+  await load_chars()
+  await clearMovieTable()
+  await load_movies()
+  await clearActorTable()
+  await load_actors()
+  await clearRoleTable()
+  await load_roles()
+
+
+}
+
 const load_chars = async () => {
-    clearCharacterTable()
     for (let char of chars_list) {
         const createCharacterResponse = await createNewCharacter(char)
     }
@@ -17,7 +29,6 @@ const load_chars = async () => {
 }
 
 const load_movies = async () => {  
-    clearMovieTable()
     fs.createReadStream("./seeders/movies_seed_30.csv")
       .pipe(parse({ delimiter: ",", from_line: 2 }))
       .on("data", function (row) {
@@ -42,30 +53,23 @@ const load_movies = async () => {
 
 
 const load_actors = async () => {  
-    clearActorTable()
-    fs.createReadStream("./seeders/actors_seed_30.csv")
-      .pipe(parse({ delimiter: ",", from_line: 2 }))
-      .on("data", function (row) {
-        //console.log(row);
+    let file_data = await fs.promises.readFile("./seeders/actors_seed_30.csv")
+    const actor_array = file_data.toString().split("\n");
+    actor_array.shift() //remove header row
+    for await (const row of actor_array) {
+      
+        const [first, last, image_url] = row.split(",")
         let actor_payload = {
-            "first_name": row[0],
-            "last_name": row[1],
-            "image_url": row[2],
+                  "first_name": first,
+                  "last_name": last,
+                  "image_url": image_url.slice(1,),  // remove lead "
         }
-
-        const createActorResponse = createNewActor(actor_payload)
-        //console.log(`Response to ${actor_payload.last_name}:  ${createActorResponse}`);
-      })
-      .on("end", function () {
-        console.log("finished actors");
-      })
-      .on("error", function (error) {
-        console.log(error.message);
-      });
+        await createNewActor(actor_payload)
+    } 
+    return 
 }
 
 const load_roles = async () => {  
-  clearRoleTable()
   fs.createReadStream("./seeders/roles_seed_30.csv")
     .pipe(parse({ delimiter: ",", from_line: 2 }))
     .on("data", async function (row) {
@@ -94,9 +98,10 @@ const load_roles = async () => {
             "actor_id": role_actor.id,
             "character_id": role_chracter.id,
             "movie_id": role_movie.id,
+            "role_record": [actor_first + " " + actor_last, movie_title, character_name]
           }
-          const createRoleResponse = createNewRole(role_payload)
-          
+          const createRoleResponse = await createNewRole(role_payload, )
+          return 
       } else {
          let miss_tags = [movie_title, actor_first+actor_last, character_name] 
          let match_mesage = "Could not match: " 
@@ -107,8 +112,8 @@ const load_roles = async () => {
                 }   
          })
          match_mesage += "in "+row
-         console.log(match_mesage)
-  
+         //console.log(match_mesage)
+         return match_mesage
       }
     })
     .on("end", function () {
@@ -123,4 +128,4 @@ const load_roles = async () => {
 
 
 
-export {load_chars, load_movies, load_actors, load_roles}
+export {loader_main, load_chars, load_movies, load_actors, load_roles}

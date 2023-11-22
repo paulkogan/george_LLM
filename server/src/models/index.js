@@ -72,26 +72,11 @@ models.Role.belongsTo(models.Character,
 		as: "role-character"
 	})
 
-// THROUGH relationships ============================	
-models.Movie.belongsToMany(models.Actor, 
-	{ 
-		through: 'Role', 
-		as:"movie-actors",
-	});
+// THROUGH relationships ============================	create unexpected constraints
+// models.Movie.belongsToMany(models.Actor, { through: 'Role', as:"movie-actors",});	
+// models.Actor.belongsToMany(models.Movie, { through: 'Role', as:"actor-movies" });
+// models.Movie.belongsToMany(models.Character, { through: 'Role' });
+// models.Character.belongsToMany(models.Movie, { through: 'Role' });
 
-	
-models.Actor.belongsToMany(models.Movie, { through: 'Role', as:"actor-movies" });
-models.Movie.belongsToMany(models.Character, { through: 'Role' });
-models.Character.belongsToMany(models.Movie, { through: 'Role' });
-
-
-
-// const db = {
-// 	models, 
-// 	sequelize,
-// 	Sequelize 
-// }
-
-export default models
-//module.exports = {models, sequelize}
+export {models, sequelize}
 

@@ -12,15 +12,18 @@ module.exports = {
       },
       character_id: {
         type: Sequelize.UUID, 
-        allowNull: false
+        allowNull: false, 
+        unique: false
       },
       movie_id: {
         type: Sequelize.UUID, 
-        allowNull: false
+        allowNull: false, 
+        unique: false
       },
       actor_id: {
         type: Sequelize.UUID, 
-        allowNull: false
+        allowNull: false, 
+        unique: false
       },
       createdAt: {
         allowNull: false,

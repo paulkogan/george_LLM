@@ -1,6 +1,6 @@
 
 import { Sequelize, DataTypes, Model } from 'sequelize';
-import models from "../models/index.js"
+import {models} from "../models/index.js"
 import {createNewCharacter} from "../domain/character.service.js"
 const Op = Sequelize.Op
 const Character = models.Character

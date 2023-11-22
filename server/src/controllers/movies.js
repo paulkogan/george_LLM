@@ -1,6 +1,6 @@
 
 import { Sequelize, DataTypes, Model } from 'sequelize';
-import models from "../models/index.js"
+import {models} from "../models/index.js"
 const Movie = models.Movie
 
 const Op = Sequelize.Op
@@ -50,7 +50,11 @@ const listMovies = async (req, res) => {
 					as: "role-actor"
 				},
 
-			]
+			], 
+			order: [  		
+				[ { model: models.Role, as: 'movie-roles' }, 
+					{ model: models.Actor, as: 'role-actor' }, 'last_name', 'DESC'] 
+			],  		
 		}
 		 ],
 		where: condition,

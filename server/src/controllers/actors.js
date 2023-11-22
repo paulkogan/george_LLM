@@ -1,6 +1,6 @@
 
 import { Sequelize, DataTypes, Model } from 'sequelize';
-import models from "../models/index.js"
+import {models} from "../models/index.js"
 const Actor = models.Actor
 
 const Op = Sequelize.Op
@@ -36,7 +36,7 @@ const listActors = async (req, res) => {
 		include: [
 			{
 				model: models.Role,
-				as: "character-roles",
+				as: "actor-roles",
 				required: false, 
 				attributes: ["id"],
 				include: [

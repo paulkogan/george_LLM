@@ -6,13 +6,14 @@
   "main": "./src/server.js",
   "scripts": {
     "start": "NODE_ENV=development nodemon /src/server.js",
-    "starttest": "NODE_ENV=development nodemon /src/server.js",
-    "test": "nodemon /src/server.js && NODE_ENV=test jest --runInBand",
+    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles",
     "lint": "npx eslint '**/*.js' --fix"
   },
   "author": "Paul Kogan",
   "license": "MIT",
   "dependencies": {
+    "@babel/plugin-syntax-import-attributes": "^7.23.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.23.3",
     "babel-register": "^6.26.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
