@@ -53,7 +53,7 @@ const listMovies = async (req, res) => {
 			], 
 			order: [  		
 				[ { model: models.Role, as: 'movie-roles' }, 
-					{ model: models.Actor, as: 'role-actor' }, 'last_name', 'DESC'] 
+					{ model: models.Actor, as: 'role-character' }, 'last_name', 'ASC'] 
 			],  		
 		}
 		 ],
