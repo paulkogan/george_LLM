@@ -13,11 +13,6 @@
   text-align: center;
 }
 
-
-
-
-
-
 .home-links {
   border: 0px solid purple;
   padding: 5px;
@@ -64,9 +59,10 @@
 }
 
 .page-header {
-  border: 1px solid red;
+  border: 0px solid red;
   padding: 5px;
-  font-size: 12px;
+  font-size: 16px;
+  font-weight: 600;
   margin-left: 20px;
   width: 90%;
   text-align: center;

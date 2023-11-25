@@ -24,7 +24,7 @@ const Nav = () => {
             <div className="home-links">
 
                 <div className="nav-link"> 
-                  <Link to="/">Home</Link>
+                  <Link to="/">Search</Link>
                 </div> 
                 <div className="nav-link"> 
                   <Link to="/movies">Movies</Link>
@@ -35,7 +35,7 @@ const Nav = () => {
 
             </div>
             <div className="nav-message">
-              {"Message: Hello and welcome to George!"}
+              {"--"}
             </div>
 
       </div>

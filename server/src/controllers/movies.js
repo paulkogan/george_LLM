@@ -21,6 +21,54 @@ const createNew = async (req, res) => {
 	}
 }
 
+const getMovieById = async (req, res) => {
+	const target_id = req.params.id
+	console.log(target_id)
+	const results = await Movie.findOne({
+		include: [
+			{
+				model: models.Role,
+				as: "movie-roles",
+				required: false, 
+				attributes: ["id"],
+				include: [
+					{
+						model: models.Character,
+						attributes: ["name", "civilian", "powers", "character_type", "id"],
+						as: "role-character"
+					},
+					{
+						model: models.Actor,
+						attributes: ["first_name", "last_name", "image_url", "id"],
+						as: "role-actor"
+					},
+	
+				], 
+				order: [  		
+					[ { model: models.Role, as: 'movie-roles' }, 
+						{ model: models.Actor, as: 'role-character' }, 'last_name', 'ASC'] 
+				],  		
+			}
+		],
+		where: {id: target_id},
+	}).then(data => {
+		res.status(200).send({
+			"data":data,
+			"errors": null,
+			"message": null
+		})
+	})
+	.catch(err => {
+		res.status(404).send({
+			"data": null,
+			"errors": `Did not find Movies with ${target_id}`, 
+			"message": `ERROR: for  Get Movie - ${err.message} `
+		})
+	})
+
+}
+
+
 
 const listMovies = async (req, res) => {
 	const target_title = req.query.title
@@ -33,7 +81,7 @@ const listMovies = async (req, res) => {
 		// 	attributes: ["id","first_name", "last_name"],
 		// 	as: "movie-actors"
 		// },
-		{
+		  {
 			model: models.Role,
 			as: "movie-roles",
 			required: false, 
@@ -55,8 +103,8 @@ const listMovies = async (req, res) => {
 				[ { model: models.Role, as: 'movie-roles' }, 
 					{ model: models.Actor, as: 'role-character' }, 'last_name', 'ASC'] 
 			],  		
-		}
-		 ],
+		  }
+		],
 		where: condition,
 		order: [
 			["release_year", "ASC"],
@@ -113,4 +161,4 @@ const findMovie = async (req, res) => {
 
 }
 
-export default {listMovies, findMovie, createNew}
+export default {listMovies, findMovie, createNew, getMovieById}

@@ -5,7 +5,7 @@ export const axiosGetRequest = async (requestURL, queryParams={}) => {
 
 
     const fullURL = process.env.REACT_APP_DEV_API_URL+requestURL
-    console.log(`FullURL is ${fullURL}`)
+    //console.log(`Axios calling ${fullURL}`)
 
     const getConfig = {    
         params: queryParams,

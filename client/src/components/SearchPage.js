@@ -3,7 +3,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 
 
-const Actors = () => {
+const SearchPage = () => {
 
 
 
@@ -11,7 +11,8 @@ const Actors = () => {
     return (
 
         <div className="page-outer"> 
-            <div className="page-header">Actors Home</div>
+            <div className="page-header">Ask George</div>
+            <input></input>
 
         </div>
 
@@ -21,4 +22,4 @@ const Actors = () => {
 
 }
 
-export default Actors
+export default SearchPage

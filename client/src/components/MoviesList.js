@@ -1,13 +1,16 @@
 
 
 import React, {useState, useEffect, useContext} from 'react';
+import {
+    Link, 
+    useNavigate
+  } from "react-router-dom"
 import {axiosGetRequest} from '../services/api_service'
-import { useNavigate} from "react-router-dom"; 
 
-const Movies = () => {
+const MoviesList = () => {
     const [moviesList, setMoviesList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-    const [pageIndex, setPageIndex] = useState(1)
+    const [pageIndex, setPageIndex] = useState(1)  // we may not need React table
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -54,7 +57,10 @@ const Movies = () => {
     const renderMovieList = (moviesList) => {
         return moviesList.map (movie => {
             return (
-                <li key={Math.floor(movie.release_year*Math.random()*1000)}>{movie.title} {movie.release_year}</li>
+                <li key={Math.floor(movie.release_year*Math.random()*1000)}>
+                    <Link to={`/movies/${movie.id}`}>{movie.title}{" ("+movie.release_year+")"}</Link>
+                    
+                </li>
             )
         })
     }
@@ -62,7 +68,7 @@ const Movies = () => {
 
     return (
         <div className="page-outer"> 
-            <div className="page-header">Movies Home</div>
+            <div className="page-header">Movies List</div>
             <div>{renderMovieList(moviesList)}</div>
 
         </div>
@@ -72,6 +78,6 @@ const Movies = () => {
 
 }
 
-export default Movies
+export default MoviesList
 
 

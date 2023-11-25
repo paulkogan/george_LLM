@@ -5,20 +5,24 @@ import {
   Route,
   Link, 
 } from "react-router-dom";
-import Movies from "./Movies.js"
-import Actors from "./Actors.js"
+import MoviesList from "./MoviesList.js"
+import MovieDetails from "./MovieDetails.js"
+import ActorsList from "./ActorsList.js"
+import SearchPage from "./SearchPage.js"
 import Nav from "./Nav.js"
 
 function App() {
   return (
     <div className="app-outer">
-        <div>George Home</div>
+        <div>Welcome to the Curious George!</div>
         <Router> 
               <Nav />
               <Routes>
-                  <Route path="/"  element={<Movies/>} />
-                  <Route path="/movies"  element={<Movies/>} />
-                  <Route path="/actors"  element={<Actors/>} />
+                  <Route path="/"  element={<SearchPage/>} />
+                  <Route path="/movies"  element={<MoviesList/>} />
+                  <Route path="/movies/:id"  element={<MovieDetails /> } />
+                  <Route path="/search"  element={<SearchPage/>} />
+                  <Route path="/actors"  element={<ActorsList/>} />
               </Routes>
 
         </Router>
@@ -27,3 +31,4 @@ function App() {
 }
 
 export default App;
+//<Route path="/movies/:id"  element={(params) => <MovieDetails {...params} /> } />
