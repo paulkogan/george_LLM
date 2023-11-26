@@ -67,3 +67,60 @@
   width: 90%;
   text-align: center;
 }
+
+
+.roles-list {
+  border: 1px solid blue;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+
+.role-parent {
+  border: 1px solid green;
+  display: flex;
+  margin: 5px;
+}
+
+.role-image-box {
+  border: 1px solid red;
+  padding: 10px;
+}
+
+
+.role-details-box {
+  border: 1px solid turquoise;
+  padding: 10px;
+
+}
+
+
+.role-image {
+  width: 80px;
+}
+
+
+.character-parent {
+  border: 1px solid green;
+  display: flex;
+  margin: 5px;
+}
+
+.character-image-box {
+  border: 1px solid red;
+  padding: 10px;
+}
+
+.character-image {
+  width: 120px;
+}
+
+
+
+.character-details-box {
+  border: 1px solid turquoise;
+  padding: 10px;
+
+}
+
+

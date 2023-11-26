@@ -1,6 +1,6 @@
 
 
-import React, {useState, useEffect, useRef, useContext} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { useNavigate, useParams} from "react-router-dom"; 
 import {axiosGetRequest} from '../services/api_service'
 import {formatCurrency} from '../services/utils'
@@ -38,7 +38,7 @@ const MovieDetails = ({updateMessage}) => {
             fetchMovieInfo()     
         }
         
-        runRef.current = true;                      
+            runRef.current = true;                      
         }
 
     }, []) 
@@ -55,13 +55,52 @@ const MovieDetails = ({updateMessage}) => {
         )
     }
 
+    const renderMovieRoles = (moviesRoles) => {
+        // return (
+        //     <div>{JSON.stringify(moviesRoles)}</div>
+        // )
+        if (! moviesRoles) {
+            return
+        } else {
+
+            return moviesRoles.map(movieRole => {
+                return (
+                    // <div>
+                    //     {JSON.stringify(movieRole)}
+                    // </div>
+                    <div key={movieRole.id} className="role-parent">
+                        <div className="role-image-box">
+                            {<img className="role-image" src={movieRole["roleActor"].image_url} ></img>} 
+                        </div>
+                        <div className="role-details-box"> 
+                            <div>{movieRole["roleActor"].first_name} {movieRole["roleActor"].last_name} </div>
+                            <div>{movieRole["roleCharacter"].name} </div>
+                            {(movieRole["roleCharacter"].civilian) && 
+                                    <div>
+                                        <div>{"/ " + movieRole["roleCharacter"].civilian} </div>                            
+                                    </div> 
+
+                            }
+
+
+      
+
+                
+                        </div>                 
+                    </div>
+                )
+            })
+        }
+    }
+
 
     return (
         <div className="page-outer"> 
             <div className="page-header">Movie Info</div>
             {(!isLoading && movieInfo ) &&
                 <div>
-                    <div>{renderMovieInfo(movieInfo)}</div>
+                    <div className="movie-info">{renderMovieInfo(movieInfo)}</div>
+                    <div className="roles-list">{renderMovieRoles(movieInfo["movieRoles"])}</div>
 
                 </div>
             }
@@ -75,3 +114,6 @@ export default MovieDetails
 
 
 // <div>{JSON.stringify(movieInfo)}</div>
+
+
+

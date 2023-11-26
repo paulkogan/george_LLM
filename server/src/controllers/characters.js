@@ -17,6 +17,62 @@ const createNew = async (req, res) => {
 	}
 }
 
+const getCharacterById = async (req, res) => {
+	const target_id = req.params.id
+	console.log(`Looking for Character UUID : ${target_id}`)
+	const results = await Character.findOne({
+		include: [
+			{
+				model: models.Role,
+				as: "characterRoles",
+				required: false, 
+				attributes: ["id"],
+				include: [
+					{
+						model: models.Movie,
+						attributes: ["title","global_box_office","release_year","synopsis","id"],
+						as: "roleMovie"
+					},
+					{
+						model: models.Actor,
+						attributes: ["first_name", "last_name", "image_url", "id"],
+						as: "roleActor"
+					},
+	
+				], 
+				order: [  		
+					[ { model: models.Role, as: 'characterRoles' }, 
+						{ model: models.Movie, as: 'roleMovie' }, 'release_year', 'DESC'] 
+				],  		
+			}
+		],
+		where: {id: target_id},
+	}).then(data => {
+		console.log(`Find Character response: ${data.title}`)
+		if (data) {
+			res.status(200).send({
+				"data":data,
+				"errors": null,
+				"message": null
+			})
+		} else {
+			res.status(404).send({
+				"data": null,
+				"errors": `Did not find Character with ${target_id}`, 
+				"message": `Did not find Character with ID: ${target_id} `
+			})
+		}
+
+	})
+	.catch(err => {
+		res.status(404).send({
+			"data": null,
+			"errors": `Did not find Characters with ${target_id}`, 
+			"message": `ERROR for  Get Character - ${err.message} `
+		})
+	})
+
+}
 
 const listCharacters = async (req, res) => {
 	const target_name = req.query.name
@@ -27,19 +83,19 @@ const listCharacters = async (req, res) => {
 		include: [
 			{
 				model: models.Role,
-				as: "character-roles",
+				as: "characterRoles",
 				required: false, 
 				attributes: ["id"],
 				include: [
 					{
 						model: models.Movie,
 						attributes: ["title","global_box_office","release_year","synopsis","id"],
-						as: "role-movie"
+						as: "roleMovie"
 					},
 					{
 						model: models.Actor,
 						attributes: ["first_name", "last_name", "image_url", "id"],
-						as: "role-actor"
+						as: "roleActor"
 					},
 	
 				]
@@ -59,7 +115,7 @@ const listCharacters = async (req, res) => {
 		.catch(err => {
 			res.status(500).send({
 				"data": null,
-				"errors": `Did not find users with ${name}`, 
+				"errors": `Did not find users with ${target_name}`, 
 				"message": `ERROR: for  List Users - ${err.message} `
 			})
 		})
@@ -100,4 +156,4 @@ const findCharacter = async (req, res) => {
 
 }
 
-export default {listCharacters, findCharacter, createNew}
+export default {listCharacters, findCharacter, createNew, getCharacterById}

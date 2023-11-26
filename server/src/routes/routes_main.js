@@ -12,6 +12,7 @@ const router = express.Router()
 
 router.get("/characters", charactersController.listCharacters)
 router.post("/characters", charactersController.createNew)
+router.get("/characters/:id", charactersController.getCharacterById)
 router.post("/characters/find", charactersController.findCharacter)
 router.get("/movies", moviesController.listMovies)
 router.get("/movies/:id", moviesController.getMovieById)

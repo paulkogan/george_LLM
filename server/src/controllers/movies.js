@@ -28,25 +28,25 @@ const getMovieById = async (req, res) => {
 		include: [
 			{
 				model: models.Role,
-				as: "movie-roles",
+				as: "movieRoles",
 				required: false, 
 				attributes: ["id"],
 				include: [
 					{
 						model: models.Character,
 						attributes: ["name", "civilian", "powers", "character_type", "id"],
-						as: "role-character"
+						as: "roleCharacter"
 					},
 					{
 						model: models.Actor,
 						attributes: ["first_name", "last_name", "image_url", "id"],
-						as: "role-actor"
+						as: "roleActor"
 					},
 	
 				], 
 				order: [  		
-					[ { model: models.Role, as: 'movie-roles' }, 
-						{ model: models.Actor, as: 'role-character' }, 'last_name', 'ASC'] 
+					[ { model: models.Role, as: 'movieRoles' }, 
+						{ model: models.Actor, as: 'roleCharacter' }, 'last_name', 'ASC'] 
 				],  		
 			}
 		],
@@ -93,25 +93,25 @@ const listMovies = async (req, res) => {
 		// },
 		  {
 			model: models.Role,
-			as: "movie-roles",
+			as: "movieRoles",
 			required: false, 
 			attributes: ["id"],
 			include: [
 				{
 					model: models.Character,
 					attributes: ["name", "civilian", "powers", "character_type", "id"],
-					as: "role-character"
+					as: "roleCharacter"
 				},
 				{
 					model: models.Actor,
 					attributes: ["first_name", "last_name", "image_url", "id"],
-					as: "role-actor"
+					as: "roleActor"
 				},
 
 			], 
 			order: [  		
-				[ { model: models.Role, as: 'movie-roles' }, 
-					{ model: models.Actor, as: 'role-character' }, 'last_name', 'ASC'] 
+				[ { model: models.Role, as: 'movieRoles' }, 
+					{ model: models.Actor, as: 'roleCharacter' }, 'last_name', 'DESC'] 
 			],  		
 		  }
 		],

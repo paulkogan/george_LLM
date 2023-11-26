@@ -9,6 +9,8 @@ import {
 import MoviesList from "./MoviesList.js"
 import MovieDetails from "./MovieDetails.js"
 import ActorsList from "./ActorsList.js"
+import CharactersList from "./CharactersList.js"
+import CharacterDetails from "./CharacterDetails.js"
 import SearchPage from "./SearchPage.js"
 import Nav from "./Nav.js"
 
@@ -24,6 +26,9 @@ function App() {
                   <Route path="/movies"  element={<MoviesList updateMessage = {setStatusMessage}/>} />
 
                   <Route path="/movies/:id"  element={<MovieDetails updateMessage = {setStatusMessage}/>} />
+                  <Route path="/characters"  element={<CharactersList updateMessage = {setStatusMessage}/>} />
+                  <Route path="/characters/:id"  element={<CharacterDetails updateMessage = {setStatusMessage}/>} />
+
                   <Route path="/search"  element={<SearchPage/>} />
                   <Route path="/actors"  element={<ActorsList/>} />
               </Routes>

@@ -34,42 +34,42 @@ models.Actor.hasMany(models.Role,
 	{
 		foreignKey: "actor_id",
 		sourceKey: "id", 
-		as: "actor-roles"
+		as: "actorRoles"
 	})
 
 models.Role.belongsTo(models.Actor,
 	{
 		foreignKey: "actor_id",
 		sourceKey: "id", 
-		as: "role-actor"
+		as: "roleActor"
 	})
 
 models.Movie.hasMany(models.Role,
 	{
 		foreignKey: "movie_id",
 		sourceKey: "id", 
-		as: "movie-roles"
+		as: "movieRoles"
 	})
 
 models.Role.belongsTo(models.Movie,
 	{
 		foreignKey: "movie_id",
 		sourceKey: "id", 
-		as: "role-movie"
+		as: "roleMovie"
 	})
 
 models.Character.hasMany(models.Role,
 	{
 		foreignKey: "character_id",
 		sourceKey: "id", 
-		as: "character-roles"
+		as: "characterRoles"
 	})
 
 models.Role.belongsTo(models.Character,
 	{
 		foreignKey: "character_id",
 		sourceKey: "id", 
-		as: "role-character"
+		as: "roleCharacter"
 	})
 
 // THROUGH relationships ============================	create unexpected constraints

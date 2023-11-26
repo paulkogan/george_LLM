@@ -7,32 +7,29 @@ import {
   } from "react-router-dom"
 import {axiosGetRequest} from '../services/api_service'
 
-const MoviesList = ({updateMessage}) => {
+const CharactersList = ({updateMessage}) => {
 
-    const [moviesList, setMoviesList] = useState([])
+    const [charactersList, setcharactersList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
     const runRef = useRef(false); 
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchMovies =  async () => {
+        const fetchcharacters =  async () => {
           
-
-          const api_endpoint_url = `/movies`
+          const api_endpoint_url = `/characters`
           const api_params = {}
-
-
           try {
     
                const response = await axiosGetRequest(api_endpoint_url, api_params)    
                const data = response.data.data 
-               updateMessage(`Found ${data.length} movies`)          
-               console.log("FE Movies List API Response: ", response.data, response.status)
-               setMoviesList(data)
+               updateMessage(`Found ${data.length} characters`)          
+               // console.log("FE characters List API Response: ", response.data, response.status)
+               setcharactersList(data)
                setIsLoading(false)
           } catch(error) {
-               console.log("FE API Error!: failed to fetch movies data", error)
+               console.log("FE API Error!: failed to fetch characters data", error)
                navigate("/")
        
                
@@ -43,7 +40,7 @@ const MoviesList = ({updateMessage}) => {
             //run only once
             if (!runRef.current) {
               setIsLoading(true)
-              fetchMovies()
+              fetchcharacters()
             }
             
             runRef.current = true;                      
@@ -51,11 +48,11 @@ const MoviesList = ({updateMessage}) => {
 
     }, []) 
     
-    const renderMovieList = (moviesList) => {
-        return moviesList.map (movie => {
+    const renderCharacterList = (charactersList) => {
+        return charactersList.map (character => {
             return (
-                <li key={Math.floor(movie.release_year*Math.random()*1000)}>
-                    <Link to={`/movies/${movie.id}`}>{movie.title}{" ("+movie.release_year+")"}</Link>
+                <li key={Math.floor(character.release_year*Math.random()*1000)}>
+                    <Link to={`/characters/${character.id}`}>{character.name}</Link>
                     
                 </li>
             )
@@ -66,8 +63,8 @@ const MoviesList = ({updateMessage}) => {
     return (
         !isLoading && 
             <div className="page-outer"> 
-                <div className="page-header">Movies List</div>
-                <div>{renderMovieList(moviesList)}</div>
+                <div className="page-header">Characters List</div>
+                <div>{renderCharacterList(charactersList)}</div>
 
             </div>
     )
@@ -75,6 +72,6 @@ const MoviesList = ({updateMessage}) => {
 
 }
 
-export default MoviesList
+export default CharactersList
 
 

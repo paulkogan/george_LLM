@@ -30,6 +30,9 @@ const Nav = ({statusMessage}) => {
                   <Link to="/movies">Movies</Link>
                 </div> 
                 <div className="nav-link"> 
+                  <Link to="/characters">Characters</Link>
+                </div>
+                <div className="nav-link"> 
                   <Link to="/actors">Actors</Link>
                 </div> 
 

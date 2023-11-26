@@ -36,19 +36,19 @@ const listActors = async (req, res) => {
 		include: [
 			{
 				model: models.Role,
-				as: "actor-roles",
+				as: "actorRoles",
 				required: false, 
 				attributes: ["id"],
 				include: [
 					{
 						model: models.Movie,
 						attributes: ["title","global_box_office","release_year","synopsis","id"],
-						as: "role-movie"
+						as: "roleMovie"
 					},
 					{
 						model: models.Character,
 						attributes: ["name", "civilian", "powers", "character_type", "id"],
-						as: "role-character"
+						as: "roleCharacter"
 					},
 	
 				]
