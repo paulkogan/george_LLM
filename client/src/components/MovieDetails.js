@@ -1,15 +1,16 @@
 
 
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import { useNavigate, useParams} from "react-router-dom"; 
 import {axiosGetRequest} from '../services/api_service'
 import {formatCurrency} from '../services/utils'
 
 
-const MovieDetails = () => {
+const MovieDetails = ({updateMessage}) => {
     const {id : movieId} = useParams();
     const [movieInfo, setMovieInfo] = useState({})
-    const [isLoading, setIsLoading] = useState(false)  
+    const [isLoading, setIsLoading] = useState(false) 
+    const runRef = useRef(false);  
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,22 +19,30 @@ const MovieDetails = () => {
           try {
     
                const response = await axiosGetRequest(api_endpoint_url)
-               const data = response.data.data           
+               console.log("FE MovieDetails API Response: ", response.data, response.status)
+               const data = response.data.data  
+               updateMessage(`Found:  ${data.title}`)         
                setMovieInfo(data)
                setIsLoading(false)
           } catch(error) {
-               console.log("FE API Error!: failed to fetch movie info", error)
+               console.log("FE API Error!: failed to fetch movie info", error, )
+               updateMessage(`ERROR ${error.response.data.message}`)
                navigate("/")             
           }
         }
-
+        
         return () => {
-
-              setIsLoading(true)
-              fetchMovieInfo()              
-          }
+        //run only once
+        if (!runRef.current) {
+            setIsLoading(true)
+            fetchMovieInfo()     
+        }
+        
+        runRef.current = true;                      
+        }
 
     }, []) 
+
     
     const renderMovieInfo = (movieInfo) => {
         return (
@@ -41,7 +50,7 @@ const MovieDetails = () => {
                 <div> Title: {movieInfo.title}</div>
                 <div> Year: {movieInfo.release_year}</div>
                 <div> Global Box Office: {formatCurrency(movieInfo.global_box_office, '$')}</div>
-                <div> Synosis: {movieInfo.synopsis}</div>
+                <div> Synopsis: {movieInfo.synopsis}</div>
             </div>
         )
     }
@@ -50,7 +59,7 @@ const MovieDetails = () => {
     return (
         <div className="page-outer"> 
             <div className="page-header">Movie Info</div>
-            {!isLoading &&
+            {(!isLoading && movieInfo ) &&
                 <div>
                     <div>{renderMovieInfo(movieInfo)}</div>
 

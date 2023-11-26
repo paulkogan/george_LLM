@@ -23,7 +23,7 @@ const createNew = async (req, res) => {
 
 const getMovieById = async (req, res) => {
 	const target_id = req.params.id
-	console.log(target_id)
+	// console.log(`Looking for Movie UUID : ${target_id}`)
 	const results = await Movie.findOne({
 		include: [
 			{
@@ -52,17 +52,27 @@ const getMovieById = async (req, res) => {
 		],
 		where: {id: target_id},
 	}).then(data => {
-		res.status(200).send({
-			"data":data,
-			"errors": null,
-			"message": null
-		})
+		console.log(`Find Movie response: ${data.title}`)
+		if (data) {
+			res.status(200).send({
+				"data":data,
+				"errors": null,
+				"message": null
+			})
+		} else {
+			res.status(404).send({
+				"data": null,
+				"errors": `Did not find Movie with ${target_id}`, 
+				"message": `Did not find Movie with ID: ${target_id} `
+			})
+		}
+
 	})
 	.catch(err => {
 		res.status(404).send({
 			"data": null,
 			"errors": `Did not find Movies with ${target_id}`, 
-			"message": `ERROR: for  Get Movie - ${err.message} `
+			"message": `ERROR for  Get Movie - ${err.message} `
 		})
 	})
 
@@ -111,6 +121,7 @@ const listMovies = async (req, res) => {
 		],
 	})
 		.then(data => {
+			console.log(`List Movies ${data.length}`)
 			res.status(200).send({
 				"data":data,
 				"errors": null,

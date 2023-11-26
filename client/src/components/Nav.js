@@ -8,7 +8,7 @@ import './App.css';
 
 
 
-const Nav = () => {
+const Nav = ({statusMessage}) => {
   const navigate = useNavigate(); 
 
 
@@ -35,7 +35,7 @@ const Nav = () => {
 
             </div>
             <div className="nav-message">
-              {"--"}
+              {statusMessage}
             </div>
 
       </div>

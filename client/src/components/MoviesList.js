@@ -1,41 +1,39 @@
 
 
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useCallback, useMemo, useRef} from 'react';
 import {
     Link, 
     useNavigate
   } from "react-router-dom"
 import {axiosGetRequest} from '../services/api_service'
 
-const MoviesList = () => {
+const MoviesList = ({updateMessage}) => {
+
     const [moviesList, setMoviesList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+
+    const runRef = useRef(false); 
     const [pageIndex, setPageIndex] = useState(1)  // we may not need React table
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchMovies = async () => {
+        const fetchMovies =  async () => {
           
-        //   if (dataFetchedRef.current) {
-        //     setIsLoading(false)
-        //     return; //flag to stop multiple loads with strict mode
-        //   }
-    
+
           const api_endpoint_url = `/movies`
-          const api_params = {'page':pageIndex}
+          const api_params = {}
+
 
           try {
     
-               const response = await axiosGetRequest(api_endpoint_url, api_params)
-    
-               const data = response.data.data           
-               //dataFetchedRef.current = true; //controlled load
-               //console.log("AXIOS Orders RESPONSE.data: ", data)
+               const response = await axiosGetRequest(api_endpoint_url, api_params)    
+               const data = response.data.data 
+               updateMessage(`Found ${data.length} movies`)          
+               console.log("FE Movies List API Response: ", response.data, response.status)
                setMoviesList(data)
                setIsLoading(false)
           } catch(error) {
                console.log("FE API Error!: failed to fetch movies data", error)
-               //sessionStorage.setItem("lastPage", "/orders")
                navigate("/")
        
                
@@ -43,13 +41,13 @@ const MoviesList = () => {
         }
 
         return () => {
-            // //console.log(`in Orders- runRef is ${runRef.current}`)
-            // if (!runRef.current) {
+            //run only once
+            if (!runRef.current) {
               setIsLoading(true)
               fetchMovies()
-            //}
+            }
             
-            //runRef.current = true;                      
+            runRef.current = true;                      
           }
 
     }, []) 
