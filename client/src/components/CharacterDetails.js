@@ -1,7 +1,7 @@
 
 
 import React, {useState, useEffect, useRef} from 'react';
-import {useNavigate, useParams} from "react-router-dom"; 
+import {useNavigate, useParams, Link} from "react-router-dom"; 
 import {axiosGetRequest} from '../services/api_service'
 import {formatCurrency} from '../services/utils'
 
@@ -18,16 +18,13 @@ const CharacterDetails = ({updateMessage}) => {
           const api_endpoint_url = `/characters/${characterId}`
           try {
     
-               const response = await axiosGetRequest(api_endpoint_url)
-               //console.log("FE CharacterDetails API Response: ", response.data, response.status)
-               const characterData = response.data.data  
-               console.log("characterData: ", characterData)   
-                // updateMessage(`Found:  ${characterData.name}`) 
+                const response = await axiosGetRequest(api_endpoint_url)
+                const characterData = response.data.data  
+                // console.log("characterData: ", characterData)   
+                updateMessage(`Found:  ${characterData.name}`) 
                 const firstCharacterRole = characterData.characterRoles[0] 
-                console.log("characterRole: ", firstCharacterRole)   
                 let imageUrl = firstCharacterRole.roleActor.image_url
-                console.log("imageUrl: ", imageUrl)
-                characterData["image_url"] = imageUrl
+                characterData["image_url"] = imageUrl //add url to character_data
                 setCharacterInfo(characterData)
                 setIsLoading(false)
           } catch(error) {
@@ -49,6 +46,10 @@ const CharacterDetails = ({updateMessage}) => {
 
     }, []) 
 
+
+    
+
+
     
     const renderCharacterInfo = (characterInfo) => {
         return (
@@ -57,8 +58,7 @@ const CharacterDetails = ({updateMessage}) => {
                     <img className="character-image" src={characterInfo.image_url} ></img> 
                 </div>
                 <div className="role-details-box">
-                    <div> Name: {characterInfo.name}</div>
-                    <div> Civilian: {characterInfo.civilian}</div>
+                    <div> Civilian name: {characterInfo.civilian}</div>
                     <div> Creature type: {characterInfo.character_type}</div>
                     <div> Powers: {characterInfo.powers}</div>
                 </div>
@@ -81,7 +81,7 @@ const CharacterDetails = ({updateMessage}) => {
 
                     
                         <div className="role-details-box">
-                            <div>{characterRole["roleMovie"].title} ({characterRole["roleMovie"].release_year})</div>
+                            <Link className="cross-link" to={`/movies/${characterRole["roleMovie"].id}`}>{characterRole["roleMovie"].title} ({characterRole["roleMovie"].release_year})</Link>
                             <div>{characterRole["roleActor"].first_name} {characterRole["roleActor"].last_name} </div>
 
                         </div>                 
@@ -94,7 +94,7 @@ const CharacterDetails = ({updateMessage}) => {
 
     return (
         <div className="page-outer"> 
-            <div className="page-header">Character Info</div>
+            <div className="page-header">{characterInfo.name}</div>
             {(!isLoading && characterInfo ) &&
                 <div>
                     <div className="character-info">{renderCharacterInfo(characterInfo)}</div>

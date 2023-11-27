@@ -30,7 +30,7 @@
 }
 
 .nav-link {
-  border: 1px solid grey;
+  border: 0px solid grey;
   display: inline-block;
   padding-left: 5px;
   padding-right: 5px;
@@ -54,6 +54,7 @@
   padding: 5px;
   padding-top: 10px;
   margin-left: 10px;
+  margin-top: 5px;
   width: 90%;
   text-align: left;
 }
@@ -71,6 +72,7 @@
 
 .roles-list {
   border: 1px solid blue;
+  display: flex;
   padding: 10px;
   flex-wrap: wrap;
 }
@@ -83,13 +85,13 @@
 }
 
 .role-image-box {
-  border: 1px solid red;
+  border: 0px solid red;
   padding: 10px;
 }
 
 
 .role-details-box {
-  border: 1px solid turquoise;
+  border: 0px solid turquoise;
   padding: 10px;
 
 }
@@ -98,7 +100,14 @@
 .role-image {
   width: 80px;
 }
-
+.movie-synopsis {
+  border: 0px solid red;
+  padding: 10px;
+}
+.movie-BO {
+  border: 0px solid purple;
+  padding: 10px;
+}
 
 .character-parent {
   border: 1px solid green;
@@ -107,7 +116,7 @@
 }
 
 .character-image-box {
-  border: 1px solid red;
+  border: 0px solid red;
   padding: 10px;
 }
 
@@ -115,10 +124,12 @@
   width: 120px;
 }
 
-
+.cross-link {
+  color: black;
+}
 
 .character-details-box {
-  border: 1px solid turquoise;
+  border: 0px solid turquoise;
   padding: 10px;
 
 }

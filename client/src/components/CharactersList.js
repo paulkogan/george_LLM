@@ -47,6 +47,8 @@ const CharactersList = ({updateMessage}) => {
           }
 
     }, []) 
+
+
     
     const renderCharacterList = (charactersList) => {
         return charactersList.map (character => {

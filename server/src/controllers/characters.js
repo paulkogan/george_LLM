@@ -40,12 +40,13 @@ const getCharacterById = async (req, res) => {
 					},
 	
 				], 
-				order: [  		
-					[ { model: models.Role, as: 'characterRoles' }, 
-						{ model: models.Movie, as: 'roleMovie' }, 'release_year', 'DESC'] 
-				],  		
+	
 			}
 		],
+		order: [  		
+			[ { model: models.Role, as: 'characterRoles' }, 
+				{ model: models.Movie, as: 'roleMovie' }, 'release_year', 'DESC'] 
+		],  	
 		where: {id: target_id},
 	}).then(data => {
 		console.log(`Find Character response: ${data.title}`)
@@ -68,7 +69,7 @@ const getCharacterById = async (req, res) => {
 		res.status(404).send({
 			"data": null,
 			"errors": `Did not find Characters with ${target_id}`, 
-			"message": `ERROR for  Get Character - ${err.message} `
+			"message": `Could not find Character - ${err.message} `
 		})
 	})
 

@@ -32,9 +32,6 @@ const Nav = ({statusMessage}) => {
                 <div className="nav-link"> 
                   <Link to="/characters">Characters</Link>
                 </div>
-                <div className="nav-link"> 
-                  <Link to="/actors">Actors</Link>
-                </div> 
 
             </div>
             <div className="nav-message">

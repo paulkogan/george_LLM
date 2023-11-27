@@ -13,5 +13,5 @@ app.listen(port, () => console.log(`George Server 2 listening on port ${port}!`)
 
 const db_config = db_config_options["development"]
 
-//  load seeds
-// loader_main()
+// load seeds
+loader_main()

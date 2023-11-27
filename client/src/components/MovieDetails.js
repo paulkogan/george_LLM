@@ -1,7 +1,7 @@
 
 
 import React, {useState, useEffect, useRef} from 'react';
-import { useNavigate, useParams} from "react-router-dom"; 
+import { useNavigate, useParams, Link} from "react-router-dom"; 
 import {axiosGetRequest} from '../services/api_service'
 import {formatCurrency} from '../services/utils'
 
@@ -47,10 +47,8 @@ const MovieDetails = ({updateMessage}) => {
     const renderMovieInfo = (movieInfo) => {
         return (
             <div> 
-                <div> Title: {movieInfo.title}</div>
-                <div> Year: {movieInfo.release_year}</div>
-                <div> Global Box Office: {formatCurrency(movieInfo.global_box_office, '$')}</div>
-                <div> Synopsis: {movieInfo.synopsis}</div>
+                <div className="movie-BO">  Global Box Office: {formatCurrency(movieInfo.global_box_office, '$')}</div>
+                <div className="movie-synopsis"> Synopsis: {movieInfo.synopsis}</div>
             </div>
         )
     }
@@ -72,15 +70,15 @@ const MovieDetails = ({updateMessage}) => {
                         <div className="role-image-box">
                             {<img className="role-image" src={movieRole["roleActor"].image_url} ></img>} 
                         </div>
-                        <div className="role-details-box"> 
+                        <div className="role-details-box">                    
+                            <Link className="cross-link" to={`/characters/${movieRole["roleCharacter"].id}`}>{movieRole["roleCharacter"].name}</Link>
                             <div>{movieRole["roleActor"].first_name} {movieRole["roleActor"].last_name} </div>
-                            <div>{movieRole["roleCharacter"].name} </div>
-                            {(movieRole["roleCharacter"].civilian) && 
+                            {/* {(movieRole["roleCharacter"].civilian) && 
                                     <div>
                                         <div>{"/ " + movieRole["roleCharacter"].civilian} </div>                            
                                     </div> 
 
-                            }
+                            } */}
 
 
       
@@ -96,7 +94,7 @@ const MovieDetails = ({updateMessage}) => {
 
     return (
         <div className="page-outer"> 
-            <div className="page-header">Movie Info</div>
+            <div className="page-header">{movieInfo.title} ({movieInfo.release_year})</div>
             {(!isLoading && movieInfo ) &&
                 <div>
                     <div className="movie-info">{renderMovieInfo(movieInfo)}</div>
