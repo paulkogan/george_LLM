@@ -1,0 +1,137 @@
+.App {
+  border: 1px solid green;
+  text-align: center;
+  padding: 10px;
+}
+
+
+.app-outer {
+  border: 1px solid red;
+  padding: 5px;
+  margin-left: 20px;
+  width: 90%;
+  text-align: center;
+}
+
+.home-links {
+  border: 0px solid purple;
+  padding: 5px;
+  margin-left: 10px;
+  width: 90%;
+  text-align: left;
+}
+
+.nav-outer {
+  border: 1px solid blue;
+  padding: 5px;
+  margin-left: 20px;
+  width: 90%;
+  text-align: left;
+}
+
+.nav-link {
+  border: 0px solid grey;
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 5px;
+  text-align: left;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.nav-message {
+  border: 1px solid orange;
+  padding: 5px;
+  font-size: 12px;
+  margin-left: 20px;
+  width: 90%;
+  text-align: left;
+}
+
+.page-outer {
+  border: 1px solid purple;
+  padding: 5px;
+  padding-top: 10px;
+  margin-left: 10px;
+  margin-top: 5px;
+  width: 90%;
+  text-align: left;
+}
+
+.page-header {
+  border: 0px solid red;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 20px;
+  width: 90%;
+  text-align: center;
+}
+
+
+.roles-list {
+  border: 1px solid blue;
+  display: flex;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+
+.role-parent {
+  border: 1px solid green;
+  display: flex;
+  margin: 5px;
+}
+
+.role-image-box {
+  border: 0px solid red;
+  padding: 10px;
+}
+
+
+.role-details-box {
+  border: 0px solid turquoise;
+  padding: 10px;
+
+}
+
+
+.role-image {
+  width: 80px;
+}
+.movie-synopsis {
+  border: 0px solid red;
+  padding: 10px;
+}
+.movie-BO {
+  border: 0px solid purple;
+  padding: 10px;
+}
+
+.character-parent {
+  border: 1px solid green;
+  display: flex;
+  margin: 5px;
+}
+
+.character-image-box {
+  border: 0px solid red;
+  padding: 10px;
+}
+
+.character-image {
+  width: 120px;
+}
+
+.cross-link {
+  color: black;
+}
+
+.character-details-box {
+  border: 0px solid turquoise;
+  padding: 10px;
+
+}
+
+
