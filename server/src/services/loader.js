@@ -66,7 +66,7 @@ const load_actors = async () => {
         }
         await createNewActor(actor_payload)
     } 
-    return 
+    return
 }
 
 const load_roles = async () => {  
@@ -91,7 +91,7 @@ const load_roles = async () => {
       // }
       // if (role_chracter and  ) {
       //   console.log(`ROLE CHAR -- ${role_chracter.name} ${role_chracter.id}`);
-      // }
+      // } 
 
       if (role_chracter && role_actor && role_movie) {
           let role_payload = {

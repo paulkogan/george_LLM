@@ -38,10 +38,9 @@ const findMovieByNameAndYear = async (target_title, target_year) => {
 		console.log(`Not found movie: ${target_title} ${target_year}`)
 	}
   
-	return results
+	return results 
 
 } 
-
 
 
 const createNewMovie = async (MoviePayload) => {
