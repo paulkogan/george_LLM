@@ -54,7 +54,7 @@ const MoviesList = ({updateMessage}) => {
     const renderMovieList = (moviesList) => {
         return moviesList.map (movie => {
             return (
-                <li key={Math.floor(movie.release_year*Math.random()*1000)}>
+                <li key={movie.id}>
                     <Link to={`/movies/${movie.id}`}>{movie.title}{" ("+movie.release_year+")"}</Link>
                     
                 </li>

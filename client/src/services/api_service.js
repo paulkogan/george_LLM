@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 
-export const axiosGetRequest = async (requestURL, queryParams={}) => {
+const axiosGetRequest = async (requestURL, queryParams={}) => {
 
 
     const fullURL = process.env.REACT_APP_DEV_API_URL+requestURL
@@ -36,7 +36,7 @@ export const axiosGetRequest = async (requestURL, queryParams={}) => {
     }   
 }
 
-export const axiosPostRequest = async (requestURL, payload={}) => {
+const axiosPostRequest = async (requestURL, payload={}) => {
     const fullURL = process.env.REACT_APP_DEV_API_URL+requestURL
 
 
@@ -44,10 +44,12 @@ export const axiosPostRequest = async (requestURL, payload={}) => {
         headers: {
             'Content-Type': 'application/json',
         }, 
-        withCredentials: true,
+        // withCredentials: true,
       }
 
     const response = await axios.post(fullURL, payload, postConfig)
     return response
 
 }
+
+export {axiosPostRequest, axiosGetRequest}

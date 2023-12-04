@@ -15,21 +15,21 @@ import SearchPage from "./SearchPage.js"
 import Nav from "./Nav.js"
 
 function App() {
-  const [statusMessage, setStatusMessage] = useState("-..-")
+  const [statusMessage, setStatusMessage] = useState("")
   return (
     <div className="app-outer">
         <div>Welcome to the Curious George!</div>
         <Router> 
               <Nav statusMessage = {statusMessage}/>
               <Routes>
-                  <Route path="/"  element={<SearchPage/>} />
+                  <Route path="/"  element={<SearchPage updateMessage = {setStatusMessage}/>} />
                   <Route path="/movies"  element={<MoviesList updateMessage = {setStatusMessage}/>} />
 
                   <Route path="/movies/:id"  element={<MovieDetails updateMessage = {setStatusMessage}/>} />
                   <Route path="/characters"  element={<CharactersList updateMessage = {setStatusMessage}/>} />
                   <Route path="/characters/:id"  element={<CharacterDetails updateMessage = {setStatusMessage}/>} />
 
-                  <Route path="/search"  element={<SearchPage/>} />
+                  <Route path="/search"  element={<SearchPage updateMessage = {setStatusMessage}/>} />
                   <Route path="/actors"  element={<ActorsList/>} />
               </Routes>
 
@@ -39,4 +39,4 @@ function App() {
 }
 
 export default App;
-//                  <Route path="/movies"  element={<MoviesList updateMessage = {setStatusMessage}/>} />
+

@@ -5,20 +5,6 @@ import { v4 as uuidv4 } from "uuid"
 
 
 
-const findRoleByName = async (name_target) => {
-
-	const results = await Role.findOne({
-		where: {title: name_target},
-	})
-
-	if (!results) {
-		console.log("No Role found")
-	}
-  
-	return results
-
-} 
-
 
 const createNewRole = async (RolePayload) => {
 	const new_role = {...RolePayload, id: uuidv4()}
@@ -55,7 +41,7 @@ const clearRoleTable = async () => {
 }
 
 
-export {createNewRole, findRoleByName, clearRoleTable}
+export {createNewRole, clearRoleTable}
 
 
 

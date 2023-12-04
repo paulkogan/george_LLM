@@ -24,7 +24,7 @@
 .nav-outer {
   border: 1px solid blue;
   padding: 5px;
-  margin-left: 20px;
+  margin-left: 10px;
   width: 90%;
   text-align: left;
 }
@@ -41,7 +41,7 @@
 }
 
 .nav-message {
-  border: 1px solid orange;
+  border: 1px solid grey;
   padding: 5px;
   font-size: 12px;
   margin-left: 20px;
@@ -134,4 +134,41 @@
 
 }
 
+
+.search-response {
+  border: 0px solid green;
+  padding: 10px;
+
+}
+
+.search-input {
+  border: 1px solid grey;
+  padding: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  width: 80%;
+
+}
+
+.search-query {
+  border: 0px solid purple;
+  padding: 10px;
+
+
+}
+
+
+
+.search-results {
+  border: 0px solid red;
+  padding: 0px;
+
+}
+
+.result-parent {
+  border: 1px solid purple;
+  padding: 10px;
+  margin-bottom: 5px;
+
+}
 
