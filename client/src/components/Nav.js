@@ -24,7 +24,7 @@ const Nav = ({statusMessage}) => {
             <div className="home-links">
 
                 <div className="nav-link"> 
-                  <Link to="/">Search</Link>
+                  <Link to="/search">Search</Link>
                 </div> 
                 <div className="nav-link"> 
                   <Link to="/movies">Movies</Link>

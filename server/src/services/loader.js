@@ -22,6 +22,7 @@ const loader_main = async () => {
 }
 
 const load_chars = async () => {
+    // chars_list.shift() //remove header row
     for (let char of chars_list) {
         const createCharacterResponse = await createNewCharacter(char)
     }
@@ -83,15 +84,7 @@ const load_roles = async () => {
       const role_movie = await findMovieByNameAndYear(movie_title, movie_year)
       const role_actor = await findActorByNames(actor_first, actor_last)
       const role_chracter = await findCharacterByName(character_name)
-      // if (role_movie ) {
-      //   console.log(`ROLE MOVIE -- ${role_movie.title} ${role_movie.id}`);
-      // }
-      // if (role_actor ) {
-      //   console.log(`ROLE ACTOR -- ${role_actor.last_name} ${role_actor.id}`);
-      // }
-      // if (role_chracter and  ) {
-      //   console.log(`ROLE CHAR -- ${role_chracter.name} ${role_chracter.id}`);
-      // }
+
 
       if (role_chracter && role_actor && role_movie) {
           let role_payload = {
