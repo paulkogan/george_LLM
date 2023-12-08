@@ -13,19 +13,19 @@ const axiosGetRequest = async (requestURL, queryParams={}) => {
       }
 
 
-    axios.interceptors.request.use(
-        config => {
-            // if you want to pass token in headers instead of cookies
-            // const token = sessionStorage.getItem('sessionToken');
-            // if (token) {
-            //     config.headers['Authorization'] = 'Bearer ' + token;
-            // }
-            config.headers['Content-Type'] = 'application/json';
-            return config;
-        },
-        error => {
-            Promise.reject(error)
-    });
+    // axios.interceptors.request.use(
+    //     config => {
+    //         // if you want to pass token in headers instead of cookies
+    //         // const token = sessionStorage.getItem('sessionToken');
+    //         // if (token) {
+    //         //     config.headers['Authorization'] = 'Bearer ' + token;
+    //         // }
+    //         config.headers['Content-Type'] = 'application/json';
+    //         return config;
+    //     },
+    //     error => {
+    //         Promise.reject(error)
+    // });
 
     try {
         const response = await axios.get(fullURL, getConfig)
@@ -42,8 +42,9 @@ const axiosPostRequest = async (requestURL, payload={}) => {
 
     const postConfig = {    
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         }, 
+
         // withCredentials: true,
       }
 
@@ -52,4 +53,40 @@ const axiosPostRequest = async (requestURL, payload={}) => {
 
 }
 
-export {axiosPostRequest, axiosGetRequest}
+
+const openAIPromptRequest = async (prompt="") => {
+    const url= 'https://api.openai.com/v1/chat/completions'
+
+    const openAIAPIKey= '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'
+
+
+    const payload= {
+        "model": "gpt-3.5-turbo",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant."
+            },
+            {
+                "role": "user",
+                "content": prompt            }
+        ]
+    }
+
+
+    const postConfig = {    
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + openAIAPIKey
+        }, 
+
+      }
+
+    const response = await axios.post(url, payload, postConfig)
+    return response
+
+}
+
+
+
+export {axiosPostRequest, axiosGetRequest, openAIPromptRequest}

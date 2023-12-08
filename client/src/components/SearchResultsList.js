@@ -14,6 +14,7 @@ const SearchResultsList = ({resultsList}) => {
         "name", 
         "first_name", 
         "last_name",
+        "count"
     ]
 
 
@@ -37,7 +38,7 @@ const SearchResultsList = ({resultsList}) => {
 
 
     const renderSearchResults = (resultsList) => {
-        console.log(JSON.stringify(resultsList))
+        console.log(`Render Search Results - ${JSON.stringify(resultsList)}`)
         if (!resultsList || resultsList.length<1) {
             return (<div>No results!</div>)
         } else {
