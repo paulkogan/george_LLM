@@ -21,8 +21,8 @@ const TextPromptPage = ({updateMessage}) => {
 
                 Include id.
                 when matching name use iLike instead of exact match equal
-                If displaying character.name, label as name.
-                If displaying movie.title, label as title.
+                If displaying character_name, label as name.
+                If displaying movie_title, label as title.
                 Please reply with just the SQL code, without an explanation`
                 
     }
@@ -31,12 +31,20 @@ const TextPromptPage = ({updateMessage}) => {
         const engineeredPropmt = await createEngineeredPrompt(userPrompt)
         //console.log(engineeredPropmt)
         await setEngineeredPrompt(engineeredPropmt)
-        const rawSQLAPIResponse = await openAIPromptRequest(engineeredPrompt)
-        const rawSQLQuery = (rawSQLAPIResponse.data.choices[0].message.content).replace(/\n/g, " ")
-        console.log(rawSQLQuery)
-        await setSqlQuery(rawSQLQuery)
-        //await setSqlQuery(rawSQLAPIResponse.data.choices[0].message.content)
-        await submitSQLQuery()
+        try {
+            const rawSQLAPIResponse = await openAIPromptRequest(engineeredPrompt)
+            const rawSQLQuery = (rawSQLAPIResponse.data.choices[0].message.content).replace(/\n/g, " ")
+            //console.log(rawSQLQuery)
+            await setSqlQuery(rawSQLQuery)
+            //await setSqlQuery(rawSQLAPIResponse.data.choices[0].message.content)
+            await submitSQLQuery()
+
+        } catch(error) {
+            setSqlResponse([]) 
+            console.log(`PROMPT ERROR: ${error}`)
+            updateMessage(`PROMPT ERROR: ${error.response.data.error.message}`)   
+      }  
+
     }
 
 
@@ -77,8 +85,9 @@ const TextPromptPage = ({updateMessage}) => {
 
         <div className="page-outer"> 
             <div className="page-header">Ask George in Free Text</div>
-            <div className="search-query"> 
-                <li>Which characters have roles in at least 4 movies?</li>
+            <div className="search-label"> Examples:</div>
+            <div className="search-instructions"> 
+                <li>Which characters have roles in at least 7 movies?</li>
                 <li>Which movies have Doctor Strange as a character?</li>
             </div>
            
@@ -91,10 +100,10 @@ const TextPromptPage = ({updateMessage}) => {
                     }}
                 />
             <button onClick={submitUserPrompt}>Send Prompt</button>
-            <hr></hr>
-
+            <div className="search-label"> Engineered Prompt:</div>
             <div className="prompt-text">{engineeredPrompt}</div>
-            <div className="search-query">sqlQuery: {JSON.stringify(sqlQuery)}</div>
+            <div className="search-label"> sqlQuery from LLM:</div>
+            <div className="search-sql-query">{JSON.stringify(sqlQuery)}</div>
 
             
 

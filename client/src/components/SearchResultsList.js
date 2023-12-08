@@ -12,6 +12,8 @@ const SearchResultsList = ({resultsList}) => {
         "title",
         "release_year", 
         "name", 
+        "character_name", 
+        "movie_title", 
         "first_name", 
         "last_name",
         "count"

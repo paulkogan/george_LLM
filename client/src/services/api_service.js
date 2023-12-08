@@ -5,7 +5,7 @@ const axiosGetRequest = async (requestURL, queryParams={}) => {
 
 
     const fullURL = process.env.REACT_APP_DEV_API_URL+requestURL
-    //console.log(`Axios calling ${fullURL}`)
+    console.log(`Axios calling ${fullURL}`)
 
     const getConfig = {    
         params: queryParams,
@@ -57,9 +57,7 @@ const axiosPostRequest = async (requestURL, payload={}) => {
 const openAIPromptRequest = async (prompt="") => {
     const url= 'https://api.openai.com/v1/chat/completions'
 
-    const openAIAPIKey= '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'
-
-
+    const openAIAPIKey = process.env.REACT_APP_OPENAI_API_KEY
     const payload= {
         "model": "gpt-3.5-turbo",
         "messages": [
@@ -84,7 +82,14 @@ const openAIPromptRequest = async (prompt="") => {
 
     const response = await axios.post(url, payload, postConfig)
     return response
-
+    // try {
+    //     const response = await axios.post(url, payload, postConfig)
+    //     return response
+    // } catch(error){
+    //     console.log("AXIOS OPENAI API ERR: "+error)        
+    //     return Promise.reject(error)
+    // }     
+    
 }
 
 
