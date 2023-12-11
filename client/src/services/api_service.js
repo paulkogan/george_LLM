@@ -65,10 +65,15 @@ const openAIPromptRequest = async (prompt="") => {
                 "role": "system",
                 "content": "You are a helpful assistant."
             },
+   
             {
                 "role": "user",
-                "content": prompt            }
-        ]
+                "content": prompt  
+            }, 
+
+
+        ], 
+        "temperature": 0.1
     }
 
 
@@ -80,18 +85,21 @@ const openAIPromptRequest = async (prompt="") => {
 
       }
 
+    // console.log(`Payload1 ${JSON.stringify(payload)}`)
     const response = await axios.post(url, payload, postConfig)
     return response
+
     // try {
     //     const response = await axios.post(url, payload, postConfig)
     //     return response
     // } catch(error){
     //     console.log("AXIOS OPENAI API ERR: "+error)        
     //     return Promise.reject(error)
-    // }     
+    // }
+    //         "response_format": { "type": "json_object" },     
     
 }
 
 
-
 export {axiosPostRequest, axiosGetRequest, openAIPromptRequest}
+

@@ -28,16 +28,17 @@ const TextPromptPage = ({updateMessage}) => {
     }
 
     const submitUserPrompt = async () => {
-        const engineeredPropmt = await createEngineeredPrompt(userPrompt)
-        //console.log(engineeredPropmt)
-        await setEngineeredPrompt(engineeredPropmt)
+
         try {
-            const rawSQLAPIResponse = await openAIPromptRequest(engineeredPrompt)
+            const ePrompt = createEngineeredPrompt(userPrompt)
+            // console.log(`ePrompt ${ePrompt}`)
+            await setEngineeredPrompt(ePrompt)
+            const rawSQLAPIResponse = await openAIPromptRequest(ePrompt)
             const rawSQLQuery = (rawSQLAPIResponse.data.choices[0].message.content).replace(/\n/g, " ")
             //console.log(rawSQLQuery)
             await setSqlQuery(rawSQLQuery)
-            //await setSqlQuery(rawSQLAPIResponse.data.choices[0].message.content)
-            await submitSQLQuery()
+            //await setSqlQuery(rawSQLAPIResponse.data)  
+            await submitSQLQuery(rawSQLQuery)
 
         } catch(error) {
             setSqlResponse([]) 
@@ -49,15 +50,14 @@ const TextPromptPage = ({updateMessage}) => {
 
 
     // If showing global_box_office as box office, format as a dollar amount.
-
     // Include count.
 
-    const submitSQLQuery = async () => {
+    const submitSQLQuery = async (query) => {
         const submitRawSqlQueryUrl = "/search/raw"
      
         try {
   
-            const response = await axiosPostRequest(submitRawSqlQueryUrl, {"sqlquery":sqlQuery})
+            const response = await axiosPostRequest(submitRawSqlQueryUrl, {"sqlquery":query})
             //console.log("order response  ", response)
             const data = await response.data.data
             // console.log("order response status ", response.status)
@@ -69,7 +69,6 @@ const TextPromptPage = ({updateMessage}) => {
             } else {
                 setSqlResponse(data)
                 updateMessage(`Found ${data.length} matching items`)
-
             }      
     
           } catch(error) {
@@ -109,7 +108,10 @@ const TextPromptPage = ({updateMessage}) => {
 
 
             { (sqlResponse.length > 0) &&
-                <SearchResultsList resultsList={sqlResponse}/>
+                <div> 
+                    <div className="search-label"> Results from DB:</div>
+                    <SearchResultsList resultsList={sqlResponse}/>
+                </div>
             }
            
         </div>
