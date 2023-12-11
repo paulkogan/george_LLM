@@ -4,9 +4,9 @@ import React, {useState, useEffect, useContext} from 'react';
 import {axiosPostRequest, axiosGetRequest,} from '../services/api_service'
 import {SearchResultsList} from './SearchResultsList.js'
 
-const SearchPage = ({updateMessage}) => {
-    const [sqlQuery, setSqlQuery] = useState("select * from movies where title ilike '%Spider%';")
-    const [sqlResponse, setSqlResponse] = useState("")
+const SQLQueryPage = ({updateMessage}) => {
+    const [sqlQuery, setSqlQuery] = useState("SELECT characters.name, COUNT(*) as count FROM characters INNER JOIN roles ON characters.id = roles.character_id GROUP BY characters.name HAVING COUNT(DISTINCT roles.movie_id) >= 7;")
+    const [sqlResponse, setSqlResponse] = useState([])
 
 
 
@@ -21,7 +21,9 @@ const SearchPage = ({updateMessage}) => {
             // console.log("order response status ", response.status)
             console.log("RESPONSE DATA is  ", data)
             if (response.status > 300) {
-                setSqlResponse(`PROBLEM: ${data.message}`)     
+                setSqlResponse([])    
+                // console.log(`PROBLEM: ${data.message}`)
+                updateMessage(`PROBLEM: ${data.message}`)     
             } else {
                 setSqlResponse(data)
                 updateMessage(`Found ${data.length} matching items`)
@@ -29,9 +31,11 @@ const SearchPage = ({updateMessage}) => {
             }      
     
           } catch(error) {
-                setSqlResponse(`ERROR: ${error}`) 
+                setSqlResponse([]) 
+                // console.log(`ERROR: ${error}`)
+                updateMessage(`ERROR: ${error}`)   
           }  
-        }   
+        }     
     
   
 
@@ -51,13 +55,13 @@ const SearchPage = ({updateMessage}) => {
                     }}
                 />
             <button onClick={submitRawSQLQuery}>Send Query</button>
-            <SearchResultsList resultsList={sqlResponse}/>
+            { (sqlResponse.length > 0) &&
+                <SearchResultsList resultsList={sqlResponse}/>
+            }
         </div>
 
     )
 
 }
 
-export default SearchPage
-
-//<div className="search-response">{JSON.stringify(sqlResponse)}</div>
+export default SQLQueryPage

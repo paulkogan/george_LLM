@@ -12,20 +12,22 @@ const SearchResultsList = ({resultsList}) => {
         "title",
         "release_year", 
         "name", 
+        "character_name", 
+        "movie_title", 
         "first_name", 
         "last_name",
+        "count"
     ]
 
 
 
     const renderResult = (result) => {
-
         return (
             <div className="result-inner">
                 {Object.entries(result)
                     .filter(([key, val])=> displayFields.includes(key))
                     .map(([key, val]) => (
-                    <span>{val} </span>
+                    <span key={result.id+key}>{val} </span>
                     )
                 )}
         
@@ -37,7 +39,7 @@ const SearchResultsList = ({resultsList}) => {
 
 
     const renderSearchResults = (resultsList) => {
-        console.log(JSON.stringify(resultsList))
+        //console.log(`Render Search Results - ${JSON.stringify(resultsList)}`)
         if (!resultsList || resultsList.length<1) {
             return (<div>No results!</div>)
         } else {

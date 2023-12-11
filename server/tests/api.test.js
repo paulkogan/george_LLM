@@ -46,11 +46,11 @@ describe("Testing Loader and GET from endpoints", () => {
 
 	})
 
-	it("should return ACTORS list of 11", async () => {
+	it("should return ACTORS list of 14", async () => {
 		const response = await request(app).get("/actors")
 		expect(response.statusCode).toBe(200)
 		expect(response.body.errors).toBe(null)
-		expect(response.body.data.length).toBe(11)
+		expect(response.body.data.length).toBe(14)
 	})
     
 	it("should filter ACTORS list by query string", async () => {
@@ -61,11 +61,11 @@ describe("Testing Loader and GET from endpoints", () => {
 		expect(response.body.data[0].first_name).toBe("Matt")
 	})
     
-	it("should return MOVIES list of 30", async () => {
+	it("should return MOVIES list of 36", async () => {
 		const response = await request(app).get("/movies")
 		expect(response.statusCode).toBe(200)
 		expect(response.body.errors).toBe(null)
-		expect(response.body.data.length).toBe(30)
+		expect(response.body.data.length).toBe(36)
 	})
     
 	it("should filter MOVIES list by query string", async () => {
@@ -73,8 +73,9 @@ describe("Testing Loader and GET from endpoints", () => {
 		// console.log("SPIDER LIST  ============\n",JSON.stringify(response.body.data, null,4))
 		expect(response.statusCode).toBe(200)
 		expect(response.body.errors).toBe(null)
-		expect(response.body.data.length).toBe(3)
-		expect(response.body.data[0].title).toBe("Spider-Man: Homecoming")
+		expect(response.body.data.length).toBe(8)
+		// console.log("SPIDER LIST [0] ============\n",JSON.stringify(response.body.data[0], null,4))
+		expect(response.body.data[0].title).toBe("Spider-Man: No Way Home")
 	})
 
 	it("should return CHARACTERS list of 10", async () => {
@@ -84,20 +85,23 @@ describe("Testing Loader and GET from endpoints", () => {
 		expect(response.body.data.length).toBe(10)
 	})
     
-	it("should filter CHARACTERS list by query string", async () => {
+	it("should filter CHARACTERS list by query string and include ROLES", async () => {
 		const response = await request(app).get("/characters?name=Captain")
-		// console.log("CHAR LIST  ============\n",JSON.stringify(response.body.data, null,4))
+		const roles = response.body.data[0]["characterRoles"]
+		//console.log("CHAR LIST Captain ============\n",JSON.stringify(response.body.data, null,4))
 		expect(response.statusCode).toBe(200)
 		expect(response.body.errors).toBe(null)
 		expect(response.body.data.length).toBe(2)
 		expect(response.body.data[0].civilian).toBe("Steve Rogers")
+		// console.log("CHAR Captain Roles============\n",JSON.stringify(roles, null,4))
+		expect(roles[0]["roleMovie"]["title"]).toBe("Captain America: The First Avenger")
 	})
 
-	it("should return included ROLES info", async () => {
-		const response = await request(app).get("/movies")
-		const roles = response.body.data[0]["movieRoles"]
+	it("should return included ROLES info with MOVIES", async () => {
+		const response = await request(app).get("/movies?title=Iron")
 		const first_mov = response.body.data[0]
-		console.log("Roles for Iron Man  ============\n",JSON.stringify(first_mov, null,4))
+		const roles = first_mov["movieRoles"]
+		// console.log("Roles for Iron Man  ============\n",JSON.stringify(first_mov , null,4))
 		expect(roles.length).toBe(2)
 		expect(roles[0]["roleCharacter"]["civilian"]).toBe("Tony Stark")
 	})

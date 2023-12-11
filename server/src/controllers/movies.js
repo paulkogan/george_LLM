@@ -87,7 +87,36 @@ const listMovies = async (req, res) => {
 	const condition = target_title ? { title: { [Op.iLike]: `%${target_title}%` } } : null
 
 	Movie.findAll({ 
-
+		include: [
+			// {
+			// 	model: models.Actor,
+			// 	attributes: ["id","first_name", "last_name"],
+			// 	as: "movie-actors"
+			// },
+			{
+				model: models.Role,
+				as: "movieRoles",
+				required: false, 
+				attributes: ["id"],
+				include: [
+					{
+						model: models.Character,
+						attributes: ["name", "civilian", "powers", "character_type", "id"],
+						as: "roleCharacter"
+					},
+					{
+						model: models.Actor,
+						attributes: ["first_name", "last_name", "image_url", "id"],
+						as: "roleActor"
+					},
+	
+				], 
+				order: [  		
+					[ { model: models.Role, as: 'movieRoles' }, 
+						{ model: models.Actor, as: 'roleActor' }, 'last_name', 'DESC'] 
+				],  		
+			}
+			 ],
 		where: condition,
 		order: [
 			["release_year", "DESC"],

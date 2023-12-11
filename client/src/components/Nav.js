@@ -24,7 +24,11 @@ const Nav = ({statusMessage}) => {
             <div className="home-links">
 
                 <div className="nav-link"> 
-                  <Link to="/search">Search</Link>
+                  <Link to="/textprompt">Text Prompt</Link>
+                </div> 
+
+                <div className="nav-link"> 
+                  <Link to="/sqlquery">SQL Query</Link>
                 </div> 
                 <div className="nav-link"> 
                   <Link to="/movies">Movies</Link>
